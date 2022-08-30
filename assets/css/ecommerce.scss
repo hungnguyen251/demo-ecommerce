@@ -1,0 +1,246 @@
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+.header {
+    // position: fixed;
+    // top: 0 !important;
+    // z-index: 1000;
+    // width: 100%;
+    // .navbar {
+    //     .container-fluid {
+    //         .navbar-toggle {
+    //             background-color: rgb(141, 136, 136) !important;
+    //             border-radius: 3px !important;
+    //             z-index: 9999;
+    //         }
+    //     }
+    // }
+
+    .cart-login i {
+        color: #fff;
+        font-size: 22px;
+        padding: 0 15px;
+        cursor: pointer;
+    }
+    
+    .main-cart {
+
+        .cart-description {
+            margin-bottom: 20px;
+        }
+
+        .btn-remove {
+            padding: 0;
+            border: none;
+        }
+
+        .btn-remove i {
+            color: #dc0069;
+            background-color: #fff;
+        }
+
+        .quantity {
+            margin: 68px 0 0 30px;
+        }
+
+        .quantity input {
+            width: 40px;
+        }
+
+        .payment-text {
+            width: 100%;
+        }
+
+        .payment-items {
+            width: 100%;
+            text-align: right;
+        }
+
+        .btn-payment-1 {
+            width: 99%;
+            margin-top: 20px;
+        }
+
+        .payment {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+
+    .cart-no-cart {
+        position: absolute;
+        top: 60px;
+        right: 50px;
+        background-color: #fff;
+        width: 440px;
+        border-radius: 2px;
+        box-shadow: 0 1px 3.125rem 0 rgba(0,0,0,0.2);
+        z-index: 1000;
+        display: none;
+        animation: fadeIn ease-in 0.2s;
+    }
+
+    .cart-no-cart::after {
+        cursor: pointer;
+        content: "";
+        position: absolute;
+        right: 3px;
+        top: -26px;
+        border-width: 16px 20px;
+    }
+
+    .cart-no-cart-img {
+        width: 100%;
+    }
+
+    .cart-no-cart-msg {
+        text-align: center;
+    }
+
+    .cart-wrap:hover .cart-no-cart {
+        display: block !important;
+    }
+}
+
+.row {
+
+    .bg-img {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        height: 340px !important;
+        margin-top: 99px;
+    }
+
+    .main-slide {
+        display: flex;
+        height: 100%;
+        transition: 0.5s;
+
+        .bg-img-slide {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+    }
+
+    .title-promo {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .list-item {
+        height: 400px;
+        object-fit: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        img {
+            width: 160px;
+            height: 180px;
+        }
+        span {
+            margin-top: 20px;
+        }
+        .item-promo-icon {
+            background-color: #dc0069;
+            color:#fff;
+            .promo-icon-text {
+                margin: 0 7px; 
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.main-list-promo {
+    .navigation-list-item {
+        position: absolute;
+        top: 750px;
+        width: 1300px;
+    }
+
+    .next-btn {
+        width: 100%;
+        text-align: end;
+    }
+
+    .bg-img {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        height: 340px !important;
+    }
+
+    .main-list {
+        transition: 0.5s;
+        .list-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+    }
+}
+
+.slick-prev, .slick-next {
+    width: 57px !important;
+    height: 40px;
+    position: absolute;
+    z-index: 111;
+}
+
+.slick-prev {
+    top: 50%;
+    border: none;
+    height: 50px;
+    font-size: 30px;
+    left: 0;
+}
+
+.slick-next {
+    right: 0;
+    top: 50%;
+    border: none;
+    height: 50px;
+    font-size: 30px;
+}
+
+.main-list-new-item {
+    .title-new-item {
+        text-align: center;
+        margin-top: 40px;
+    }
+}
+
+.brand-info {
+    .brand-title {
+        .brand-text {
+            text-align: center;
+        }
+    }
+
+    .brand-list {
+        .brand-layout {
+            height: 200px;
+            overflow: hidden;
+            justify-content: center;
+            text-align: center;
+            display: flex;
+            flex: 1;
+
+            .brand-thump {
+                width: 55% !important;
+            }
+
+            .slick-arrow {
+                opacity: 0;
+            }
+        }
+    }
+}

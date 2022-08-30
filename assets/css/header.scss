@@ -1,0 +1,186 @@
+
+.header {
+    position: fixed;
+    top: 0 !important;
+    z-index: 1000;
+    width: 100%;
+
+    .navbar {
+
+        .navbar_search {
+            // .test {
+            //     position: relative;
+            //     background-color: white;
+            //     border-radius: 5px;
+            // }
+
+            .navbar_search_form {
+                position: relative !important;
+
+                .navbar_search_input {
+                    width: 1150px;
+                    border: none;
+                }
+    
+                .navbar_search_icon {
+                    position: absolute;
+                    border: none;
+                    color: rgb(155, 146, 146);
+                    font-size: 20px;
+                    right: 0px;
+                }
+            }
+        }
+    }
+
+    .cart-login i {
+        color: #fff;
+        font-size: 22px;
+        padding: 0 15px;
+        cursor: pointer;
+    }
+    
+    .main-cart {
+
+        .cart-description {
+            margin-bottom: 20px;
+        }
+
+        .btn-remove {
+            padding: 0;
+            border: none;
+        }
+
+        .btn-remove i {
+            color: #dc0069;
+            background-color: #fff;
+        }
+
+        .quantity {
+            margin: 68px 0 0 30px;
+        }
+
+        .quantity input {
+            width: 40px;
+        }
+
+        .payment-text {
+            width: 100%;
+        }
+
+        .payment-items {
+            width: 100%;
+            text-align: right;
+        }
+
+        .btn-payment-1 {
+            width: 99%;
+            margin-top: 20px;
+        }
+
+        .payment {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+
+    .cart-no-cart {
+        position: absolute;
+        top: 60px;
+        right: 50px;
+        background-color: #fff;
+        width: 440px;
+        border-radius: 2px;
+        box-shadow: 0 1px 3.125rem 0 rgba(0,0,0,0.2);
+        z-index: 1000;
+        display: none;
+        animation: fadeIn ease-in 0.2s;
+    }
+
+    .cart-no-cart::after {
+        cursor: pointer;
+        content: "";
+        position: absolute;
+        right: 3px;
+        top: -26px;
+        border-width: 16px 20px;
+    }
+
+    .cart-no-cart-img {
+        width: 100%;
+    }
+
+    .cart-no-cart-msg {
+        text-align: center;
+    }
+
+    .cart-wrap:hover .cart-no-cart {
+        display: block !important;
+    }
+}
+
+@media (max-width: 1490px) {
+  .bg-img {
+    margin-top: 140px !important;
+  }
+}
+
+@media (max-width: 1400px) {
+    .header {
+        .navbar {      
+            .navbar_search {
+                .navbar_search_form {
+                    width: 900px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .header {
+        .navbar {      
+            .navbar_search {
+                .navbar_search_form {
+                    width: 685px;           
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        .navbar {      
+            .navbar_search {
+                .navbar_search_form {
+                    width: 455px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        .navbar {      
+            .navbar_search {
+                .navbar_search_form {
+                    width: 265px;
+                }
+            }
+        }
+    }
+}
+
+// @media (max-width: 576px) {
+//     .header {
+//         .navbar {      
+//             .navbar_search {
+//                 .test {
+//                     width: 220px;
+//                 }
+//             }
+//         }
+//     }
+// }

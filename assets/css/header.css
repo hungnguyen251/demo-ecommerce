@@ -1,0 +1,114 @@
+.header {
+  position: fixed;
+  top: 0 !important;
+  z-index: 1000;
+  width: 100%;
+}
+.header .navbar .navbar_search .navbar_search_form {
+  position: relative !important;
+}
+.header .navbar .navbar_search .navbar_search_form .navbar_search_input {
+  width: 1150px;
+  border: none;
+}
+.header .navbar .navbar_search .navbar_search_form .navbar_search_icon {
+  position: absolute;
+  border: none;
+  color: rgb(155, 146, 146);
+  font-size: 20px;
+  right: 0px;
+}
+.header .cart-login i {
+  color: #fff;
+  font-size: 22px;
+  padding: 0 15px;
+  cursor: pointer;
+}
+.header .main-cart .cart-description {
+  margin-bottom: 20px;
+}
+.header .main-cart .btn-remove {
+  padding: 0;
+  border: none;
+}
+.header .main-cart .btn-remove i {
+  color: #dc0069;
+  background-color: #fff;
+}
+.header .main-cart .quantity {
+  margin: 68px 0 0 30px;
+}
+.header .main-cart .quantity input {
+  width: 40px;
+}
+.header .main-cart .payment-text {
+  width: 100%;
+}
+.header .main-cart .payment-items {
+  width: 100%;
+  text-align: right;
+}
+.header .main-cart .btn-payment-1 {
+  width: 99%;
+  margin-top: 20px;
+}
+.header .main-cart .payment {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.header .cart-no-cart {
+  position: absolute;
+  top: 60px;
+  right: 50px;
+  background-color: #fff;
+  width: 440px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3.125rem 0 rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: none;
+  -webkit-animation: fadeIn ease-in 0.2s;
+          animation: fadeIn ease-in 0.2s;
+}
+.header .cart-no-cart::after {
+  cursor: pointer;
+  content: "";
+  position: absolute;
+  right: 3px;
+  top: -26px;
+  border-width: 16px 20px;
+}
+.header .cart-no-cart-img {
+  width: 100%;
+}
+.header .cart-no-cart-msg {
+  text-align: center;
+}
+.header .cart-wrap:hover .cart-no-cart {
+  display: block !important;
+}
+
+@media (max-width: 1490px) {
+  .bg-img {
+    margin-top: 140px !important;
+  }
+}
+@media (max-width: 1400px) {
+  .header .navbar .navbar_search .navbar_search_form {
+    width: 900px;
+  }
+}
+@media (max-width: 1200px) {
+  .header .navbar .navbar_search .navbar_search_form {
+    width: 685px;
+  }
+}
+@media (max-width: 992px) {
+  .header .navbar .navbar_search .navbar_search_form {
+    width: 455px;
+  }
+}
+@media (max-width: 768px) {
+  .header .navbar .navbar_search .navbar_search_form {
+    width: 265px;
+  }
+}/*# sourceMappingURL=header.css.map */
