@@ -1,4 +1,13 @@
+<?php
+require_once "./assets/database/db-connect.php";
+$sql = "SELECT * FROM products WHERE promo is null ";
+$ssql = "SELECT * FROM products WHERE promo is not null ";
+$sqlBrand = "SELECT url FROM brand_products";
 
+$resultPromo = mysqli_query($conn, $ssql);
+$resultNoPromo = mysqli_query($conn, $sql);
+$resultBrandList = mysqli_query($conn, $sqlBrand);
+?>
 
 <!DOCTYPE html>
     <head>
@@ -56,8 +65,26 @@
                     <div class="title-promo">
                         <h3 class="title-promo mb-5">Sản phẩm khuyến mãi</h3>
                     </div>
-
                     <div class="row main-list">
+                    <?php while ($productPromo = getData($resultPromo)) {?>
+                        <div class="col-sm-3 d-flex flex-column list-item">
+                            <img src="<?=$productPromo['url']; ?>" alt="">
+                            <div class="item-promo-icon">
+                                <div class="promo-icon-text">PROMO</div>
+                            </div>
+                            <span class="list-item-brand text-center"><?=$productPromo['brand']; ?></span>
+                            <b><?= $productPromo['name']; ?></b>
+                            <i><?=$productPromo['description']; ?></i>
+                            <b class="item-price"><?=$productPromo['promo']; ?></b>
+                            <p class="item-old-price ms-3 text-decoration-line-through"><?=$productPromo['price']; ?></p>
+
+                            <div class="flex-grow-1 text-end d-flex align-items-end justify-content-end">
+                                <button class="btn-add mb-5" data-index="${index}">
+                                    <i class="fa-solid fa-cart-arrow-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    <?php } ?>
                     </div>
                 </div>
 
@@ -67,6 +94,24 @@
                     </div>
 
                     <div class="row list-new-item">
+                        <?php while ($productNoPromo = getData($resultNoPromo)) {?>
+                            <div class="col-sm-3 d-flex flex-column list-item">
+                                <img src="<?=$productNoPromo['url']; ?>" alt="">
+                                <div class="item-promo-icon" style="background-color:black;">
+                                    <div class="promo-icon-text">NEW</div>
+                                </div>
+                                <span class="list-item-brand text-center"><?=$productNoPromo['brand']; ?></span>
+                                <b><?= $productNoPromo['name']; ?></b>
+                                <i><?=$productNoPromo['description']; ?></i>
+                                <b class="item-price"><?=$productNoPromo['price']; ?></b>
+
+                                <div class="flex-grow-1 text-end d-flex align-items-end justify-content-end">
+                                    <button class="btn-add mb-5" data-index="${index}">
+                                        <i class="fa-solid fa-cart-arrow-down"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -76,14 +121,17 @@
                     </div>
 
                     <div class="row brand-list">
-                        <div class="col-6 col-sm-2 brand-layout">
-                        </div>
+                            <div class="col-6 col-sm-2 brand-layout">
+                                <?php while ($brandList = getData($resultBrandList)) {?>
+                                    <img src="<?=$brandList['url']; ?>" alt="" class="brand-thump">
+                                <?php } ?>
+                            </div>
                     </div>
                 </div>
             </div>
 
         </div>
-    <script src="assets/js/ecommerce.js" async></script>
+    <!-- <script src="assets/js/ecommerce.js" async></script> -->
     <script src="assets/js/slick_slide.js"></script>
     <?php include './footer.php' ?>
     </body>
