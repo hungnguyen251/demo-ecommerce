@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "./assets/database/db-connect.php";
 $sql = "SELECT * FROM products WHERE promo is null ";
 $ssql = "SELECT * FROM products WHERE promo is not null ";
@@ -7,6 +8,28 @@ $sqlBrand = "SELECT url FROM brand_products";
 $resultPromo = mysqli_query($conn, $ssql);
 $resultNoPromo = mysqli_query($conn, $sql);
 $resultBrandList = mysqli_query($conn, $sqlBrand);
+
+if (isset($_GET['action']) && $_GET['action']=="add"){   
+    $id = intval($_GET['id']); 
+    if (!isset($_SESSION['cart'][$id])){ 
+        $sql_s="SELECT * FROM products WHERE id={$id}"; 
+        $query_s=mysqli_query($conn, $sql_s); 
+
+        if ($query_s != '') { 
+            $row_s=mysqli_fetch_array($query_s); 
+              
+            $_SESSION['cart'][$row_s['id']]=[
+                    "price" => $row_s['price'],
+                    "img" => $row_s['url'],
+                    "name" => $row_s['name'],
+                    "price" => $row_s['price'],
+                    "promo" => $row_s['promo']
+            ]; 
+        } else { 
+            $message="This product id it's invalid!";  
+        }
+    }
+} 
 ?>
 
 <!DOCTYPE html>
@@ -66,25 +89,26 @@ $resultBrandList = mysqli_query($conn, $sqlBrand);
                         <h3 class="title-promo mb-5">Sản phẩm khuyến mãi</h3>
                     </div>
                     <div class="row main-list">
-                    <?php while ($productPromo = getData($resultPromo)) {?>
-                        <div class="col-sm-3 d-flex flex-column list-item">
-                            <img src="<?=$productPromo['url']; ?>" alt="">
-                            <div class="item-promo-icon">
-                                <div class="promo-icon-text">PROMO</div>
-                            </div>
-                            <span class="list-item-brand text-center"><?=$productPromo['brand']; ?></span>
-                            <b><?= $productPromo['name']; ?></b>
-                            <i><?=$productPromo['description']; ?></i>
-                            <b class="item-price"><?=$productPromo['promo']; ?></b>
-                            <p class="item-old-price ms-3 text-decoration-line-through"><?=$productPromo['price']; ?></p>
+                        <?php 
+                            if(isset($message)){ 
+                                echo "<h2>$message</h2>"; 
+                            } 
+                        ?> 
+                        <?php while ($productPromo = getData($resultPromo)) {?>
+                            <div class="col-sm-3 d-flex flex-column list-item">
+                                <img src="<?=$productPromo['url']; ?>" alt="">
+                                <div class="item-promo-icon">
+                                    <div class="promo-icon-text">PROMO</div>
+                                </div>
+                                <span class="list-item-brand text-center"><?=$productPromo['brand']; ?></span>
+                                <b><?= $productPromo['name']; ?></b>
+                                <i><?=$productPromo['description']; ?></i>
+                                <b class="item-price"><?=$productPromo['promo']; ?></b>
+                                <p class="item-old-price ms-3 text-decoration-line-through"><?=$productPromo['price']; ?></p>
 
-                            <div class="flex-grow-1 text-end d-flex align-items-end justify-content-end">
-                                <button class="btn-add mb-5" data-index="${index}">
-                                    <i class="fa-solid fa-cart-arrow-down"></i>
-                                </button>
+                                <a href="index.php?page=products&action=add&id=<?php echo $productPromo['id'] ?>"><i class="fa-solid fa-cart-arrow-down icon-add-cart"></i></a>
                             </div>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -104,12 +128,8 @@ $resultBrandList = mysqli_query($conn, $sqlBrand);
                                 <b><?= $productNoPromo['name']; ?></b>
                                 <i><?=$productNoPromo['description']; ?></i>
                                 <b class="item-price"><?=$productNoPromo['price']; ?></b>
-
-                                <div class="flex-grow-1 text-end d-flex align-items-end justify-content-end">
-                                    <button class="btn-add mb-5" data-index="${index}">
-                                        <i class="fa-solid fa-cart-arrow-down"></i>
-                                    </button>
-                                </div>
+                                
+                                <a href="index.php?page=products&action=add&id=<?php echo $productNoPromo['id'] ?>"><i class="fa-solid fa-cart-arrow-down icon-add-cart"></i></a>
                             </div>
                         <?php } ?>
                     </div>

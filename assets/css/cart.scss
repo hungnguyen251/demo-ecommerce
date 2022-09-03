@@ -5,31 +5,40 @@
 .cart_list {
     height: 1000px;
 
-    .cart_list_title {
-        font-size: 30px;
-        text-align: center;
+    .cart_title {
+        margin-top: 130px !important;
+        .cart_list_title {
+            font-size: 30px;
+            text-align: center;
+        }
     }
 
-    .show_cart_page {
-        padding-top: 15px;
-        display: relative;
-        .list-item {
-            border-top: 2px solid #ccc;
-            border-bottom: 2px solid #ccc;
-        }
+    // .show_cart_page {
+    //     padding-top: 15px;
+    //     display: relative;
+    //     .list-item {
+    //         border-top: 2px solid #ccc;
+    //         border-bottom: 2px solid #ccc;
+    //     }
 
-        .show_cart_items {
-            margin-left: 50px;
-            border-top: 2px solid #ccc;
-            border-bottom: 2px solid #ccc;
-        }
+    //     .show_cart_items {
+    //         margin-left: 50px;
+    //         border-top: 2px solid #ccc;
+    //         border-bottom: 2px solid #ccc;
+    //     }
     
-        .show_cart_total {
-            .number-item {
-                width: 100%;
-            }
+    //     .show_cart_total {
+    //         .number-item {
+    //             width: 100%;
+    //         }
+    //     }
+    .table {
+        .table_title {
+            font-size: 20px;
+            font-weight: bold;
         }
     }
+
 
     .payment_page {
         height: 90px;

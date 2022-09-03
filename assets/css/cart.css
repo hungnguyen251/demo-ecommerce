@@ -5,25 +5,16 @@
 .cart_list {
   height: 1000px;
 }
-.cart_list .cart_list_title {
+.cart_list .cart_title {
+  margin-top: 130px !important;
+}
+.cart_list .cart_title .cart_list_title {
   font-size: 30px;
   text-align: center;
 }
-.cart_list .show_cart_page {
-  padding-top: 15px;
-  display: relative;
-}
-.cart_list .show_cart_page .list-item {
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-}
-.cart_list .show_cart_page .show_cart_items {
-  margin-left: 50px;
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-}
-.cart_list .show_cart_page .show_cart_total .number-item {
-  width: 100%;
+.cart_list .table .table_title {
+  font-size: 20px;
+  font-weight: bold;
 }
 .cart_list .payment_page {
   height: 90px;

@@ -144,6 +144,10 @@
   justify-content: center;
   overflow: hidden;
 }
+.main-list-promo .main-list .icon-add-cart {
+  font-size: 28px;
+  color: rgb(0, 0, 0);
+}
 
 .slick-prev, .slick-next {
   width: 57px !important;
