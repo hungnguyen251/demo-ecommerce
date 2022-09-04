@@ -130,7 +130,7 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
                                 <i><?=$productNoPromo['description']; ?></i>
                                 <b class="item-price"><?=$productNoPromo['price']; ?></b>
                                 
-                                <a href="index.php?page=products&action=add&id=<?php echo $productNoPromo['id'] ?>"><i class="fa-solid fa-cart-arrow-down icon-add-cart"></i></a>
+                                <a href="index.php?page=products&action=add&id=<?php echo $productNoPromo['id'] ?>"><i class="fa-solid fa-cart-arrow-down icon-add-cart-new"></i></a>
                             </div>
                         <?php } ?>
                     </div>

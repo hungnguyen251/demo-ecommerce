@@ -176,6 +176,11 @@
   text-align: center;
   margin-top: 40px;
 }
+.main-list-new-item .icon-add-cart-new {
+  font-size: 28px;
+  color: rgb(0, 0, 0);
+  margin-top: 20px;
+}
 
 .brand-info .brand-title .brand-text {
   text-align: center;
