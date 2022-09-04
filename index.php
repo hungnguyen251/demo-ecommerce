@@ -23,7 +23,7 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
                     "img" => $row_s['url'],
                     "name" => $row_s['name'],
                     "price" => $row_s['price'],
-                    "promo" => $row_s['promo']
+                    "promo" => $row_s['promo'] ? $row_s['promo']  : '',
             ]; 
         } else { 
             $message="This product id it's invalid!";  
