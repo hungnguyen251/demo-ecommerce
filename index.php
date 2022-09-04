@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once "./assets/database/db-connect.php";
 $sql = "SELECT * FROM products WHERE promo is null ";
 $ssql = "SELECT * FROM products WHERE promo is not null ";
@@ -9,6 +10,7 @@ $resultPromo = mysqli_query($conn, $ssql);
 $resultNoPromo = mysqli_query($conn, $sql);
 $resultBrandList = mysqli_query($conn, $sqlBrand);
 
+//add to cart
 if (isset($_GET['action']) && $_GET['action']=="add"){   
     $id = intval($_GET['id']); 
     if (!isset($_SESSION['cart'][$id])){ 
@@ -25,6 +27,7 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
                     "name" => $row_s['name'],
                     "price" => $row_s['price'],
                     "promo" => $row_s['promo'] ? $row_s['promo']  : '',
+                    "quantity" => 1
             ]; 
         } else { 
             $message="This product id it's invalid!";  

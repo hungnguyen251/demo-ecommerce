@@ -1,5 +1,9 @@
 <?php
-session_start();
+if (!isset($_SESSION)) { 
+    session_start(); 
+} 
+
+//check and delete item
 if (isset($_GET['action']) && $_GET['action']=="delete"){   
     $id = intval($_GET['id']); 
     foreach ($_SESSION['cart'] as $deleteItem) {

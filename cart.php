@@ -1,6 +1,10 @@
 <?php
-session_start();
-if (isset($_GET['action']) && $_GET['action']=="delete"){   
+if (!isset($_SESSION)) { 
+    session_start(); 
+} 
+
+//check and delete item
+if (isset($_GET['action']) && $_GET['action']=="delete") {   
     $id = intval($_GET['id']); 
     foreach ($_SESSION['cart'] as $deleteItem) {
         if ($_SESSION['cart'][$id]['id'] = $_GET['id']) {
@@ -8,6 +12,17 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
         }
     }
 } 
+
+//check and add quantity value
+if(isset($_POST['submit'])){ 
+    foreach($_POST['quantity'] as $key => $val) { 
+        if($val==0) { 
+            unset($_SESSION['cart'][$key]); 
+        }else{ 
+            $_SESSION['cart'][$key]['quantity']=$val; 
+        } 
+    }   
+}
 ?>
 <!DOCTYPE html>
     <head>
@@ -46,16 +61,19 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
                                             </tr>
                                         </thead>
                                         <?php if (isset($_SESSION['cart'])) { 
+                                                $total = 0;
                                                 foreach ($_SESSION['cart'] as $checkoutProduct) {
                                                     if ($checkoutProduct['id'] != null) {
-                                                        $price[] = $checkoutProduct['price'];?>           
+                                                        $price = intval($checkoutProduct['price'] * $checkoutProduct['quantity']);
+                                                        $total += $price;
+                                                    ?> 
                                                         <tbody class="table-group-divider">
                                                             <tr>
                                                                 <td scope="row"><img src="<?=$checkoutProduct['img'];?>" alt="" style="width:60px;height:50px;"></td>
                                                                 <td><?=$checkoutProduct['name'];?></td>
                                                                 <td><?=$checkoutProduct['price'];?></td>
-                                                                <td>1</td>
-                                                                <td><?=$checkoutProduct['price']*1;?></td>
+                                                                <td><input type="text" class="input_quantity" name="quantity[<?=$checkoutProduct['id']?>]" value="<?= isset($checkoutProduct['quantity']) ? $checkoutProduct['quantity'] : 1 ?>"></td>
+                                                                <td><?=$checkoutProduct['price']* $checkoutProduct['quantity'];?></td>
                                                                 <td>
                                                                     <a href="cart.php?page=products&action=delete&id=<?php echo $checkoutProduct['id'] ?>" class="">
                                                                         <i class="fa-solid fa-xmark"></i>
@@ -73,8 +91,8 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
                             <div class="payment_page col-lg-12 position-relative">
                                 <div class="payment_page_subTotal position-absolute top-50 start-50 translate-middle">
                                     Tổng (Đã bao gồm VAT):   
-                                    <?php if (isset($price)) { ?> 
-                                        <b class="payment_page_price payment-items fs-4"> <?=(array_sum($price)+array_sum($price)*0.08)/2?></b>
+                                    <?php if (isset($total)) {?> 
+                                        <b class="payment_page_price payment-items fs-4"> <?=$total + $total*0.08?></b>
                                     <?php } ?>   
                                 </div>
                             </div>
