@@ -109,7 +109,9 @@ session_start();
                                     </p>
                                     <h3 class="d-flex"> 
                                         <b class="payment-text fs-4">Total Payment: </b>
+                                        <?php if (isset($price)) { ?> 
                                         <b class="total-payment payment-items fs-4"><?=array_sum($price)+array_sum($price)*0.08?></b>
+                                        <?php } ?>
                                     </h3>
                                     <div class="btn-payment text-center">
                                         <a href="cart.php"><button type="button" class="btn btn-secondary btn-lg fs-5 btn-payment-1">Tiến hành thanh toán</button></a>
