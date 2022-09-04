@@ -1,5 +1,13 @@
 <?php
 session_start();
+if (isset($_GET['action']) && $_GET['action']=="delete"){   
+    $id = intval($_GET['id']); 
+    foreach ($_SESSION['cart'] as $deleteItem) {
+        if ($_SESSION['cart'][$id]['id'] = $_GET['id']) {
+            $_SESSION['cart'][$id] = null;
+        }
+    }
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +54,7 @@ session_start();
                                 <div class="show-cart">
                                     <?php if (isset($_SESSION['cart'])) { 
                                         foreach ($_SESSION['cart'] as $showCart) {
+                                            if ($showCart['id'] != null) {
                                             $price[] = $showCart['price'];
                                     ?>  
                                             <div class="d-flex mb-3 list-item">
@@ -86,12 +95,12 @@ session_start();
                                                 </div>
 
                                                 <div>
-                                                    <button class="btn-remove" data-index="${index}">
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>  
+                                                    <a href="index.php?page=products&action=delete&id=<?php echo $showCart['id'] ?>" class="">
+                                                        <i class="fa-solid fa-xmark"  style="color:black;"></i>
+                                                    </a>
                                                 </div>    
                                             </div>
-                                    <?php } } ?>
+                                    <?php } } } ?>
                                 </div>
 
                                 <div class="payment border-top">

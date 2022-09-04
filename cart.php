@@ -1,5 +1,13 @@
 <?php
 session_start();
+if (isset($_GET['action']) && $_GET['action']=="delete"){   
+    $id = intval($_GET['id']); 
+    foreach ($_SESSION['cart'] as $deleteItem) {
+        if ($_SESSION['cart'][$id]['id'] = $_GET['id']) {
+            $_SESSION['cart'][$id] = null;
+        }
+    }
+} 
 ?>
 <!DOCTYPE html>
     <head>
@@ -39,18 +47,23 @@ session_start();
                                         </thead>
                                         <?php if (isset($_SESSION['cart'])) { 
                                                 foreach ($_SESSION['cart'] as $checkoutProduct) {
-                                                    $price[] = $showCart['price'];?>           
-                                                    <tbody class="table-group-divider">
-                                                        <tr>
-                                                            <td scope="row"><img src="<?=$checkoutProduct['img'];?>" alt="" style="width:60px;height:50px;"></td>
-                                                            <td><?=$checkoutProduct['name'];?></td>
-                                                            <td><?=$checkoutProduct['price'];?></td>
-                                                            <td>1</td>
-                                                            <td><?=$checkoutProduct['price']*1;?></td>
-                                                            <td>Xóa</td>
-                                                        </tr>
-                                                    </tbody>
-                                        <?php } }?>
+                                                    if ($checkoutProduct['id'] != null) {
+                                                        $price[] = $checkoutProduct['price'];?>           
+                                                        <tbody class="table-group-divider">
+                                                            <tr>
+                                                                <td scope="row"><img src="<?=$checkoutProduct['img'];?>" alt="" style="width:60px;height:50px;"></td>
+                                                                <td><?=$checkoutProduct['name'];?></td>
+                                                                <td><?=$checkoutProduct['price'];?></td>
+                                                                <td>1</td>
+                                                                <td><?=$checkoutProduct['price']*1;?></td>
+                                                                <td>
+                                                                    <a href="cart.php?page=products&action=delete&id=<?php echo $checkoutProduct['id'] ?>" class="">
+                                                                        <i class="fa-solid fa-xmark"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                        <?php } } }?>
                                     </table>
                                     <br /> 
                                     <button type="submit" name="submit">Update Cart</button> 
@@ -61,7 +74,7 @@ session_start();
                                 <div class="payment_page_subTotal position-absolute top-50 start-50 translate-middle">
                                     Tổng (Đã bao gồm VAT):   
                                     <?php if (isset($price)) { ?> 
-                                        <b class="payment_page_price payment-items fs-4"> <?=array_sum($price)+array_sum($price)*0.08?></b>
+                                        <b class="payment_page_price payment-items fs-4"> <?=(array_sum($price)+array_sum($price)*0.08)/2?></b>
                                     <?php } ?>   
                                 </div>
                             </div>

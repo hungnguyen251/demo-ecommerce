@@ -19,6 +19,7 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
             $row_s=mysqli_fetch_array($query_s); 
               
             $_SESSION['cart'][$row_s['id']]=[
+                    "id" => $id,
                     "price" => $row_s['price'],
                     "img" => $row_s['url'],
                     "name" => $row_s['name'],
