@@ -1,18 +1,23 @@
 <?php
-session_start();
+if (!isset($_SESSION)) { 
+    session_start(); 
+} 
+
+require_once "./assets/database/db-connect.php";
 header('Content-Type: text/html; charset=UTF-8');
 
-$accounts = [
-    ["email" => "test1@gmail.com", "name" => "Nguyen Van A", "password" => "123456"],
-    ["email" => "test2@gmail.com", "name" => "Nguyen Van B", "password" => "1234567"],
-    ["email" => "test3@gmail.com", "name" => "Nguyen Van C", "password" => "12345678"]
-];
+$sql = "SELECT * FROM user WHERE status = 'active'";
+
+$userInfo = mysqli_query($conn, $sql);
+
+while ($row = getData($userInfo)){
+    $dataUsers[] = $row;
+}
 
 $err = null;//mảng chứa cảnh báo lỗi
 $existAccount = null;
-if (isset($_POST['dangnhap'])) {     
-
-    foreach ($accounts as $account) {
+if (isset($_POST['login'])) {     
+    foreach ($dataUsers as $account) {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
@@ -30,7 +35,7 @@ if (isset($_POST['dangnhap'])) {
         $_SESSION['account'] = $existAccount;
         header("Location:profile.php");
     } else {
-        $err= 'Thông tin đăng nhập không chính xác, vui lòng nhập lại';
+        $err = 'Thông tin đăng nhập không chính xác, vui lòng nhập lại';
     }
 }
 ?>
@@ -72,7 +77,7 @@ if (isset($_POST['dangnhap'])) {
                                     <label><input type="checkbox" name=""> Nhớ Đăng Nhập</label>
                                 </div>
                                 <div class="input-form">
-                                    <input type="submit" value="Đăng Nhập" name="dangnhap">
+                                    <input type="submit" value="Đăng Nhập" name="login">
                                 </div>
                                 <div class="input-form">
                                     <p>Bạn Chưa Có Tài Khoản? <a href="register_user.php">Đăng Ký</a></p>

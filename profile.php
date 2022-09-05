@@ -1,30 +1,51 @@
 <?php
-session_start(); 
-echo "Thông tin tài khoản của bạn: ";
-echo "<br>";
-print_r("Tên: . " . $_SESSION['account']['name'] . ""); 
-echo '<br>';
-print_r("Email: . " . $_SESSION['account']['email'] . ""); 
-echo '<br>';
-print_r("Password: . " . $_SESSION['account']['password'] . ""); 
-echo '<br>';
+if (!isset($_SESSION)) { 
+    session_start(); 
+} 
 
 if (!isset($_SESSION['account'])) {
     header('Location:login.php');
 }
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatile" content="IE=edge" />
-    <title>BT2</title>
-</head>
-<body>
-    <a href="logout.php">Thoát</a>
-
-</body>
+    <head>
+        <title>Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatile" content="IE=edge" />
+        <link rel="stylesheet" href="./assets/css/login.css">
+        <link rel="stylesheet" href="./assets/fonts_icon/css/all.css">
+    </head>
+        <body>
+        <?php include 'header.php' ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-sm-12 login_layout">
+                    <div class="noi-dung">
+                        <div class="form">
+                            <h2>Thông tin của bạn</h2>
+                            <form action="login.php" method="post" enctype="">
+                                <div class="input-form">
+                                    <span>Email : <?=$_SESSION['account']['email']?></span>
+                                    </br>
+                                    <span>Tên : <?=$_SESSION['account']['full_name']?></span>
+                                    </br>
+                                    <span>Địa chỉ : <?=$_SESSION['account']['address']?></span>
+                                    </br>
+                                    <span>Số điện thoại : <?=$_SESSION['account']['phone']?></span>
+                                    </br>
+                                    <span>Ngày sinh : <?=$_SESSION['account']['birthday']?></span>
+                                    </br>
+                                    <span>Đơn hàng đã đặt : </span>
+                                </div>
+                                <a href="index.php">Quay lại trang chủ</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php include './footer.php' ?>
+    </body>
 </html>
