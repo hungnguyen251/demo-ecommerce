@@ -1,0 +1,30 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    margin-top: 150px;
+}
+
+.container .row {
+    height:300px;
+}
+
+.text-layout {
+    text-align: center;
+}
+
+.text-title {
+    text-align: center;
+}
+
+.back-home {
+    background-color: #a6d9b854;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}

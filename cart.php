@@ -23,6 +23,14 @@ if(isset($_POST['submit'])){
         } 
     }   
 }
+
+$total = 0;
+if (!isset($_SESSION['payment_price'])){   
+    $_SESSION['payment_price']=[
+            "total_price" => $total,
+        ]; 
+}
+
 ?>
 <!DOCTYPE html>
     <head>
@@ -65,7 +73,6 @@ if(isset($_POST['submit'])){
                                             </tr>
                                         </thead>
                                         <?php if (isset($_SESSION['cart'])) { 
-                                                $total = 0;
                                                 foreach ($_SESSION['cart'] as $checkoutProduct) {
                                                     if ($checkoutProduct['id'] != null) {
                                                         $price = intval($checkoutProduct['price'] * $checkoutProduct['quantity']);
@@ -91,7 +98,8 @@ if(isset($_POST['submit'])){
                                     <button type="submit" name="submit" class="btn btn-outline-success">Cập nhật</button>
                                 </form>
                             </div>
-                            <?php if (isset($total)) {?> 
+                            <?php if (isset($total)) {
+                                $_SESSION['payment_price']['total_price'] = $total + $total*0.08;?> 
                             <div class="payment_page col-lg-12 position-relative">
                                 <div class="payment_page_subTotal position-absolute top-50 start-50 translate-middle">
                                     Tổng (Đã bao gồm VAT):   
