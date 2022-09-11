@@ -5,6 +5,8 @@ if (!isset($_SESSION)) {
 
 if (isset($_SESSION['cart'])) {
     session_destroy();
+} else {
+    header('Location:cart.php');
 }
 
 ?>

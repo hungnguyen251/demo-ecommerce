@@ -14,18 +14,18 @@ if (!isset($_SESSION['account'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatile" content="IE=edge" />
-        <link rel="stylesheet" href="./assets/css/login.css">
+        <link rel="stylesheet" href="./assets/css/profile.css">
         <link rel="stylesheet" href="./assets/fonts_icon/css/all.css">
     </head>
         <body>
         <?php include 'header.php' ?>
-        <div class="container">
+        <div class="container" style="height: 700px;">
             <div class="row">
                 <div class="col-6 col-sm-12 login_layout">
                     <div class="noi-dung">
-                        <div class="form">
+                        <div class="form" style="margin-top: -200px">
                             <h2>Thông tin của bạn</h2>
-                            <form action="login.php" method="post" enctype="">
+                            <form action="" method="post" enctype="">
                                 <div class="input-form">
                                     <span>Email : <?=$_SESSION['account']['email']?></span>
                                     </br>
@@ -37,9 +37,10 @@ if (!isset($_SESSION['account'])) {
                                     </br>
                                     <span>Ngày sinh : <?=$_SESSION['account']['birthday']?></span>
                                     </br>
-                                    <span>Đơn hàng đã đặt : </span>
+                                    <!-- <span>Đơn hàng đã đặt : </span> -->
                                 </div>
-                                <a href="index.php">Quay lại trang chủ</a>
+                                <a class="back-home" href="index.php">Quay lại trang chủ</a>
+                                <a class="go-to-cart" href="cart.php">Đi đến giỏ hàng</a>
                             </form>
                         </div>
                     </div>

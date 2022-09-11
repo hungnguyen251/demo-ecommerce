@@ -12,11 +12,33 @@ $errPhone = null;
 $errEmail = null;
 
 if (isset($_POST['checkout'])) {
-    $fullname      = addslashes($_POST['email']);
+    $fullname      = addslashes($_POST['fullname']);
     $email      = addslashes($_POST['email']);
     $phone   = addslashes($_POST['phone']);
     $address   = addslashes($_POST['address']);
     $note        = addslashes($_POST['note']);
+
+    if (isset($_SESSION['account']['full_name'])) {
+        $fullname = $_SESSION['account']['full_name'];
+    }
+
+    if (isset($_SESSION['account']['phone'])) {
+        $phone = $_SESSION['account']['phone'];
+    }
+
+    if (isset($_SESSION['account']['email'])) {
+        $email = $_SESSION['account']['email'];
+    }
+
+    if (isset($_SESSION['account']['address'])) {
+        $address = $_SESSION['account']['address'];
+    }
+
+    if (isset($_SESSION['account']['id'])) {
+        $userId = $_SESSION['account']['id'];
+    } else {
+        $userId = null;
+    }
 
     //Kiểm tra người dùng đã nhập liệu đầy đủ chưa
     if ($fullname == '' || $email == '' || $phone == '' || $address == '') {
@@ -33,8 +55,8 @@ if (isset($_POST['checkout'])) {
         //Sau khi validate dữ liệu ghi vào DB
         } else {
             @$addOrder = mysqli_query($conn,"
-                INSERT INTO orders (full_name,email,phone,address,note,total_price)
-                VALUE ('{$fullname}','{$email}','{$phone}','{$address}','{$note}','{$_SESSION['payment_price']['total_price']}')
+                INSERT INTO orders (user_id, full_name,email,phone,address,note,total_price)
+                VALUE ('{$userId}','{$fullname}','{$email}','{$phone}','{$address}','{$note}','{$_SESSION['payment_price']['total_price']}')
             ");
                                 
             //Thông báo quá trình lưu
@@ -72,32 +94,58 @@ if (isset($_POST['checkout'])) {
                             <?php if ($err) { ?>
                                 <div style="color:red"><?php echo $err; ?></div>
                             <?php } ?>
+
+                                <!-- Nhập thông họ tên người nhận -->
                                 <div class="input-form">
                                     <span>Họ và tên khách hàng</span>
                                     <br/>
-                                    <input type="text" name="fullname" class="" placeholder="Vui lòng nhập họ tên đầy đủ">
+                                    <?php if (isset($_SESSION['account']['full_name'])) { ?>
+                                        <input type="text" name="fullname" class="" placeholder="<?=$_SESSION['account']['full_name']?>">
+                                    <?php } else { ?> 
+                                        <input type="text" name="fullname" class="" placeholder="Vui lòng nhập họ tên người nhận">
+                                    <?php } ?>
                                 </div>
+
+                                <!-- Nhập thông email người nhận -->
                                 <div class="input-form">
                                     <span>Email</span>
                                     <br/>
-                                    <input type="text" name="email" placeholder="Vui lòng nhập email">
+                                    <?php if (isset($_SESSION['account']['email'])) { ?>
+                                        <input type="text" name="email" placeholder="<?=$_SESSION['account']['email']?>">
+                                    <?php } else { ?> 
+                                        <input type="text" name="email" placeholder="Vui lòng nhập email">
+                                    <?php } ?>
                                 </div>
                                 <?php if ($errEmail) { ?>
                                     <div style="color:red"><?php echo $errEmail; ?></div>
                                 <?php } ?> 
+
+                                <!-- Nhập thông SĐT người nhận -->
                                 <div class="input-form">
                                     <span>Số điện thoại</span>
                                     <br/>
-                                    <input type="text" name="phone" placeholder="Vui lòng nhập số điện thoại">
+                                    <?php if (isset($_SESSION['account']['phone'])) { ?>
+                                        <input type="text" name="phone" placeholder="<?=$_SESSION['account']['phone']?>">
+                                    <?php } else { ?> 
+                                        <input type="text" name="phone" placeholder="Vui lòng nhập số điện thoại">
+                                    <?php } ?>
                                 </div>
                                 <?php if ($errPhone) { ?>
                                     <div style="color:red"><?php echo $errPhone; ?></div>
                                 <?php } ?>
+
+                                <!-- Nhập địa chỉ giao hàng -->
                                 <div class="input-form">
                                     <span>Địa chỉ</span>
                                     <br/>
-                                    <input type="text" name="address" placeholder="Vui lòng nhập địa chỉ giao hàng">
+                                    <?php if (isset($_SESSION['account']['address'])) { ?>
+                                        <input type="text" name="address" placeholder="<?=$_SESSION['account']['address']?>">
+                                    <?php } else { ?> 
+                                        <input type="text" name="address" placeholder="Vui lòng nhập địa chỉ giao hàng">
+                                    <?php } ?>
                                 </div>
+
+                                <!-- Ghi chú -->
                                 <div class="input-form">
                                     <span>Ghi chú</span>
                                     <br/>

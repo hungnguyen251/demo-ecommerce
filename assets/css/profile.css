@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+  
+.login_layout {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    height: 1000px;
+    margin-left: 25%;
+}
+  
+.login_layout .noi-dung {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+  
+.login_layout .noi-dung .form {
+    width: 100%;
+}
+  
+.login_layout .noi-dung .form h2 {
+    color: #607d8b;
+    font-weight: 500;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #ff4584;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+.login_layout .noi-dung .form .input-form {
+    margin-bottom: 20px;
+}
+  
+.login_layout .noi-dung .form .input-form span {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #607db8;
+    letter-spacing: 1px;
+}
+  
+.back-home, .go-to-cart {
+    background-color: rgba(166, 217, 184, 0.3294117647);
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    margin-top: 200px;
+}
+
