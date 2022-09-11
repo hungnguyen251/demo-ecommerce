@@ -83,7 +83,7 @@ if (isset($_POST['checkout'])) {
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     </head>
         <body>
-        <!-- <?php include 'header.php' ?> -->
+        <?php include 'header.php' ?>
         <div class="container">
             <div class="row" class="height:1000px;">
                 <div class="col-sm-6 checkout_layout">
