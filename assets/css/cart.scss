@@ -58,6 +58,15 @@
     }
 }
 
+.btn-navigation {
+    margin-top: 20px;
+    position: relative;
+    .btn-navigation_continue {
+        position: absolute;
+        right: 0;
+    }
+}
+
 @media (max-width: 992px) {
     .header {
         .navbar {      

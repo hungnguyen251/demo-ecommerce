@@ -44,7 +44,11 @@ if(isset($_POST['submit'])){
                     <div class="cart">
                         <div class="cart_list">
                             <div class="cart_title">
+                            <?php if (isset($_SESSION['cart'])) { ?>
                                 <h4 class="cart_list_title mt-5">Sản phẩm đã chọn</h4>
+                            <?php } else { ?>
+                                <h4 class="cart_list_title mt-5">Giỏ hàng của bạn đang trống</h4>
+                            <?php } ?>  
                                 <br/>
                             </div>
                             <div class="show_cart_page">
@@ -84,17 +88,24 @@ if(isset($_POST['submit'])){
                                         <?php } } }?>
                                     </table>
                                     <br /> 
-                                    <button type="submit" name="submit">Update Cart</button> 
+                                    <button type="submit" name="submit" class="btn btn-outline-success">Cập nhật</button>
                                 </form>
                             </div>
-
+                            <?php if (isset($total)) {?> 
                             <div class="payment_page col-lg-12 position-relative">
                                 <div class="payment_page_subTotal position-absolute top-50 start-50 translate-middle">
                                     Tổng (Đã bao gồm VAT):   
-                                    <?php if (isset($total)) {?> 
                                         <b class="payment_page_price payment-items fs-4"> <?=$total + $total*0.08?></b>
-                                    <?php } ?>   
+                            <?php } ?>   
                                 </div>
+                            </div>
+                            <div class="btn-navigation d-flex">
+                                <form action="index.php" method="" class="btn-navigation_back">
+                                    <button type="submit" name="" class="btn btn-outline-success">Quay lại trang chủ</button>
+                                </form>
+                                <form action="checkout.php" method="" class="btn-navigation_continue">
+                                    <button type="submit" name="" class="btn btn-outline-success">Tiếp tục</button>                                
+                                </form>
                             </div>
                         </div>
                     </div>

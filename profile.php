@@ -10,7 +10,7 @@ if (!isset($_SESSION['account'])) {
 
 <!DOCTYPE html>
     <head>
-        <title>Login</title>
+        <title>Thông tin cá nhân</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatile" content="IE=edge" />
