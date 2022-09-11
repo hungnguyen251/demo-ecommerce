@@ -38,9 +38,12 @@ if (!isset($_SESSION['account'])) {
                                     <span>Ngày sinh : <?=$_SESSION['account']['birthday']?></span>
                                     </br>
                                     <!-- <span>Đơn hàng đã đặt : </span> -->
+                                    <a href="logout.php">Đăng xuất</a>
                                 </div>
-                                <a class="back-home" href="index.php">Quay lại trang chủ</a>
-                                <a class="go-to-cart" href="cart.php">Đi đến giỏ hàng</a>
+                                <div class="btn-navigation">
+                                    <a class="back-home" href="index.php">Quay lại trang chủ</a>
+                                    <a class="go-to-cart" href="cart.php">Đi đến giỏ hàng</a>         
+                                </div>
                             </form>
                         </div>
                     </div>

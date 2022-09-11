@@ -2,8 +2,8 @@
 session_start();
 
 if (isset($_SESSION['account'])) {
-    session_destroy();
-    header('Location:login.php');
+    session_unset();
+    header('Location:index.php');
 }
 ?>
 

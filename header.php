@@ -40,7 +40,11 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
                 </form>
                 <div class="cart-login d-flex">
                     <div class="login-wrap">
+                    <?php if (isset($_SESSION['account'])) { ?>
+                        <a class="btn bg-dark" href="profile.php" role="button"><i class="fa-solid fa-user"></i></a>
+                    <?php } else { ?>
                         <a class="btn bg-dark" href="login.php" role="button"><i class="fa-solid fa-user"></i></a>
+                    <?php } ?>
                     </div>
 
                     <div class="cart-wrap" onclick="showCart();">

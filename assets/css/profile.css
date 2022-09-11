@@ -49,6 +49,10 @@
     letter-spacing: 1px;
 }
   
+.btn-navigation {
+    margin-top: 50px;
+}
+
 .back-home, .go-to-cart {
     background-color: rgba(166, 217, 184, 0.3294117647);
     padding: 15px 20px;
