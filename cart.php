@@ -95,7 +95,7 @@ if (!isset($_SESSION['payment_price'])){
                                         <?php } } }?>
                                     </table>
                                     <br /> 
-                                    <button type="submit" name="submit" class="btn btn-outline-success">Cập nhật</button>
+                                    <button type="submit" name="submit" class="btn btn-outline-success" style="margin-bottom: 30px;">Cập nhật giỏ hàng</button>
                                 </form>
                             </div>
                             <?php if (isset($total)) {
