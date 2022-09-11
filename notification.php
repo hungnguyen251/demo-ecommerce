@@ -23,7 +23,7 @@ if (isset($_SESSION['cart'])) {
         <?php include 'header.php' ?>
         <div class="container">
             <div class="row">
-                <div class="col-sm-12" class="text-layout">
+                <div class="col-sm-12 text-layout">
                     <h4 class="text-title" style="text-align: center;font-size: 30px;">Bạn đã đặt hàng thành công</h4>
                     <a class="back-home" href="index.php">Quay lại trang chủ</a>
                 </div>

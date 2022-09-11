@@ -19,6 +19,7 @@
 
 .text-title {
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .back-home {
@@ -27,4 +28,5 @@
     border-radius: 10px;
     text-decoration: none;
     color: black;
+    margin-top: 200px;
 }
