@@ -344,29 +344,6 @@ function handlePayment() {
     $(".payment_page_price").html(totalPayment + ' đ');
 }
 
-// Slide background image
-var bgImg = $('.bg-img-slide');
-var totalBgImg = bgImg.length;
-var screenBgImg = $(window).innerWidth();
-var totalWidth = screenBgImg * totalBgImg;
-var indexBgImg = 0;
-
-$('.main-slide').css({width: `${totalWidth}px`});
-
-$('.carousel-control-prev').click(function () {
-    if (indexBgImg > 0) {
-        indexBgImg -= 1;
-        $('.main-slide').css({ transform: `translateX(-${screenBgImg * indexBgImg}px)`});
-    }
-})
-
-$('.carousel-control-next').click(function () {
-    if (indexBgImg < totalBgImg - 1) {
-        indexBgImg += 1;
-        $('.main-slide').css({ transform: `translateX(-${screenBgImg * indexBgImg}px)`});
-    }
-})
-
 //slide list promo
 $(".main-list").slick({
     slidesToShow: 4,

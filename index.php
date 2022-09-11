@@ -54,39 +54,15 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
         <body>
         <div id="container">
             <?php include 'header.php' ?>
-            <div class="row">
-                <div class="col-lg-12 bg-img">
-                    <div id="wrapper-slide" class="carousel slide" data-bs-ride="true">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner1 main-slide">
-                            <div class="active bg-img-slide">
-                                <img src="assets/img/ecom-bg1.jpg" class="" alt="">
-                            </div>
-                            <div class="bg-img-slide">
-                                <img src="assets/img/ecom-bg2.jpg" class="" alt="">
-                            </div>
-                            <div class=" bg-img-slide">
-                                <img src="assets/img/ecom-bg3.jpg" class="" alt="">
-                            </div>
-                        </div>
-
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                            <i class="fa-solid fa-angle-left prev-icon" style="color: red; font-size: 40px;"></i>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                            <i class="fa-solid fa-angle-right next-icon" style="color: red; font-size: 40px;"></i>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                      </div>
+            <div id="container">
+                <div class="row">
+                    <div class="col-sm-12 bg-img">
+                        <img src="assets/img/ecom-bg1.jpg" class="bg-img_slide" alt="">
+                        <img src="assets/img/ecom-bg2.jpg" class="bg-img_slide" alt="">
+                        <img src="assets/img/ecom-bg3.jpg" class="bg-img_slide" alt="">
+                    </div>
                 </div>
             </div>
-
             <div class="container">
                 <div class="row main-list-promo">
                     <div class="title-promo">

@@ -72,23 +72,8 @@
 }
 
 .row .bg-img {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-  height: 340px !important;
-  margin-top: 99px;
-}
-.row .main-slide {
-  display: flex;
-  height: 100%;
-  transition: 0.5s;
-}
-.row .main-slide .bg-img-slide {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  text-align: center;
+  margin-top: 99.2px;
 }
 .row .title-promo {
   text-align: center;
@@ -182,6 +167,9 @@
   margin-top: 20px;
 }
 
+.brand-info {
+  margin-top: 60px;
+}
 .brand-info .brand-title .brand-text {
   text-align: center;
 }
