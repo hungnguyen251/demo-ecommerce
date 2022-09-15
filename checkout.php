@@ -6,6 +6,10 @@ if (!isset($_SESSION)) {
 require_once "./assets/database/db-connect.php";
 header('Content-Type: text/html; charset=UTF-8');
 
+if (!isset($_SESSION['cart'])) {
+    header('Location:cart.php');
+}
+
 //Lấy dữ liệu từ file dangky.php
 $err = null;//mảng chứa cảnh báo lỗi
 $errPhone = null;
@@ -54,11 +58,19 @@ if (isset($_POST['checkout'])) {
             $errPhone = 'SĐT không hợp lệ. Vui lòng nhập SĐT khác';
         //Sau khi validate dữ liệu ghi vào DB
         } else {
+            $orderCode = "NMH" . rand(100000000,999999999);
             @$addOrder = mysqli_query($conn,"
-                INSERT INTO orders (user_id, full_name,email,phone,address,note,total_price)
-                VALUE ('{$userId}','{$fullname}','{$email}','{$phone}','{$address}','{$note}','{$_SESSION['payment_price']['total_price']}')
+                INSERT INTO orders (user_id, order_code, full_name,email,phone,address,note,total_price)
+                VALUE ('{$userId}', '{$orderCode}','{$fullname}','{$email}','{$phone}','{$address}','{$note}','{$_SESSION['payment_price']['total_price']}')
             ");
                                 
+            if (!isset($_SESSION['order_info'])) {
+                $_SESSION['order_info']=[
+                    "order_code" => $orderCode,
+                    'note' => $note,
+                ];
+            }
+
             //Thông báo quá trình lưu
             if ($addOrder) {
                 echo "Bạn đã đặt hàng thành công";

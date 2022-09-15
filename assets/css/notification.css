@@ -13,8 +13,9 @@
     height:300px;
 }
 
-.text-layout {
+.text-layout, .btn-comeback {
     text-align: center;
+    margin-top: 40px;
 }
 
 .text-title {
@@ -29,4 +30,11 @@
     text-decoration: none;
     color: black;
     margin-top: 200px;
+    margin-top: 20px;
+}
+
+.icon-success {
+    font-size: 67px;
+    margin-bottom: 20px;
+    color: #22bf22;
 }
