@@ -6,6 +6,12 @@
     width: 100%;
 
     .navbar {
+        .navbar-brand {
+            font-size: 28px;
+            .my-name {
+                border-radius: 50%;
+            }
+        }
 
         .navbar_search {
             // .test {

@@ -82,9 +82,9 @@ if (!isset($_SESSION['payment_price'])){
                                                             <tr>
                                                                 <td scope="row"><img src="<?=$checkoutProduct['img'];?>" alt="" style="width:60px;height:50px;"></td>
                                                                 <td><?=$checkoutProduct['name'];?></td>
-                                                                <td><?=$checkoutProduct['price'];?></td>
+                                                                <td><?=currency_format($checkoutProduct['price']);?>.000đ</td>
                                                                 <td><input type="text" class="input_quantity" name="quantity[<?=$checkoutProduct['id']?>]" value="<?= isset($checkoutProduct['quantity']) ? $checkoutProduct['quantity'] : 1 ?>"></td>
-                                                                <td><?=$checkoutProduct['price']* $checkoutProduct['quantity'];?></td>
+                                                                <td><?=currency_format($checkoutProduct['price']* $checkoutProduct['quantity']);?>.000đ</td>
                                                                 <td>
                                                                     <a href="cart.php?page=products&action=delete&id=<?php echo $checkoutProduct['id'] ?>" class="">
                                                                         <i class="fa-solid fa-xmark"></i>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['payment_price'])){
                             <div class="payment_page col-lg-12 position-relative">
                                 <div class="payment_page_subTotal position-absolute top-50 start-50 translate-middle">
                                     Tổng (Đã bao gồm VAT):   
-                                        <b class="payment_page_price payment-items fs-4"> <?=$total + $total*0.08?></b>
+                                        <b class="payment_page_price payment-items fs-4"> <?= currency_format($total + $total*0.08)?>.000đ</b>
                             <?php } ?>   
                                 </div>
                             </div>

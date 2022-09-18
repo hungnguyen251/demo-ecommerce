@@ -4,6 +4,12 @@
   z-index: 1000;
   width: 100%;
 }
+.header .navbar .navbar-brand {
+  font-size: 28px;
+}
+.header .navbar .navbar-brand .my-name {
+  border-radius: 50%;
+}
 .header .navbar .navbar_search .navbar_search_form {
   position: relative !important;
 }

@@ -66,7 +66,7 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
             <div class="container">
                 <div class="row main-list-promo">
                     <div class="title-promo">
-                        <h3 class="title-promo mb-5">Sản phẩm khuyến mãi</h3>
+                        <h3 class="title-promo mb-5">SẢN PHẨM KHUYẾN MÃI</h3>
                     </div>
                     <div class="row main-list">
                         <?php 
@@ -76,17 +76,18 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
                         ?> 
                         <?php while ($productPromo = getData($resultPromo)) {?>
                             <div class="col-sm-3 d-flex flex-column list-item">
-                                <img src="<?=$productPromo['url']; ?>" alt="">
+                                <img class="list-item_img" src="<?=$productPromo['url']; ?>" alt="">
                                 <div class="item-promo-icon">
                                     <div class="promo-icon-text">PROMO</div>
                                 </div>
                                 <span class="list-item-brand text-center"><?=$productPromo['brand']; ?></span>
                                 <b><?= $productPromo['name']; ?></b>
                                 <i><?=$productPromo['description']; ?></i>
-                                <b class="item-price"><?=$productPromo['promo']; ?></b>
-                                <p class="item-old-price ms-3 text-decoration-line-through"><?=$productPromo['price']; ?></p>
-
-                                <a href="index.php?page=products&action=add&id=<?php echo $productPromo['id'] ?>"><i class="fa-solid fa-cart-arrow-down icon-add-cart"></i></a>
+                                <b class="item-price"><?=currency_format($productPromo['promo']); ?>.000đ</b>
+                                <p class="item-old-price ms-3 text-decoration-line-through"><?=currency_format($productPromo['price']); ?>.000đ</p>
+                                <div class="add-cart">
+                                    <a href="index.php?page=products&action=add&id=<?php echo $productPromo['id'] ?>"><i class="fa-solid fa-cart-arrow-down icon-add-cart"></i></a>  
+                                </div>
                             </div>
                         <?php } ?>
                     </div>
@@ -94,7 +95,7 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
 
                 <div class="main-list-new-item">
                     <div class="title-new-item">
-                        <h3 class="title-new-item mb-5">Sản phẩm mới nhất</h3>
+                        <h3 class="title-new-item mb-5">SẢN PHẨM MỚI NHẤT</h3>
                     </div>
 
                     <div class="row list-new-item">
@@ -107,9 +108,10 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
                                 <span class="list-item-brand text-center"><?=$productNoPromo['brand']; ?></span>
                                 <b><?= $productNoPromo['name']; ?></b>
                                 <i><?=$productNoPromo['description']; ?></i>
-                                <b class="item-price"><?=$productNoPromo['price']; ?></b>
-                                
-                                <a href="index.php?page=products&action=add&id=<?php echo $productNoPromo['id'] ?>"><i class="fa-solid fa-cart-arrow-down icon-add-cart-new"></i></a>
+                                <b class="item-price"><?=currency_format($productNoPromo['price']); ?>.000đ</b>
+                                <div class="add-cart">
+                                    <a href="index.php?page=products&action=add&id=<?php echo $productNoPromo['id'] ?>"><i class="fa-solid fa-cart-arrow-down icon-add-cart-new"></i></a>  
+                                </div>
                             </div>
                         <?php } ?>
                     </div>
@@ -117,7 +119,7 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
 
                 <div class="brand-info">
                     <div class="brand-title">
-                        <h3 class="brand-text mb-5">Thương hiệu nổi tiếng</h3>
+                        <h3 class="brand-text mb-5">THƯƠNG HIỆU NỔI TIẾNG</h3>
                     </div>
 
                     <div class="row brand-list">

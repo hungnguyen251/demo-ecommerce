@@ -45,7 +45,7 @@ if (isset($_SESSION['cart'])) {
                                 <tr>
                                     <td><?=$_SESSION['order_info']['order_code']?></td>
                                     <td><?=date('m/d/Y h:i:s a', time())?></td>
-                                    <td><?=$_SESSION['payment_price']['total_price']?></td>
+                                    <td><?=currency_format($_SESSION['payment_price']['total_price'])?>.000đ</td>
                                     <td><?=$_SESSION['order_info']['note']?></td>
                                 </tr>
                             </tbody>

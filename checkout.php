@@ -195,7 +195,7 @@ if (isset($_POST['checkout'])) {
                                     </span>
                                 </div>
                                 <div class="col-sm-3">  
-                                    <p class="amount me-3"><?=$checkoutProduct['price']* $checkoutProduct['quantity'];?></p>
+                                    <p class="amount me-3"><?=currency_format($checkoutProduct['price']* $checkoutProduct['quantity']);?>.000đ</p>
                                 </div>
                             </div>
                             <?php } } } ?>
@@ -205,7 +205,7 @@ if (isset($_POST['checkout'])) {
                                 </div>
                                 <?php if (isset($total)) {?> 
                                 <div class="col-sm-3 text-box pr-5">
-                                    <h4 class="" style="font-size:25px"><b><?=$total + $total*0.08?></b></h4>
+                                    <h4 class="" style="font-size:25px"><b><?=currency_format($total + $total*0.08)?>.000đ</b></h4>
                                 </div>
                             </div>
                             <?php } ?>
