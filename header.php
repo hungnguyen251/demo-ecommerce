@@ -12,6 +12,26 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
         }
     }
 } 
+
+//format currency
+if (!function_exists('currency_format')) {
+    function currency_format($number) {
+        if (!empty($number)) {
+            return number_format($number, 0, ',', '.');
+        }
+    }
+}
+// if(isset($_POST['submit1'])){ 
+//     var_dump($_POST['quantity']);
+//     foreach($_POST['quantity'] as $key => $val) { 
+//         if($val==0) { 
+//             unset($_SESSION['cart'][$key]); 
+//         }else{ 
+//             $_SESSION['cart'][$key]['quantity']=$val; 
+//         } 
+//         var_dump($_SESSION['cart'][$key]['quantity']);
+//     }   
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +49,7 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
         <nav class="navbar bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand text-light" href="index.php">
-                    <img src="assets/img/ex1.jpg" alt="" width="35" height="30" class="d-inline-block align-text-top">
+                    <img src="assets/img/ex1.jpg" alt="" width="45" height="40" class="d-inline-block align-text-top my-name">
                 CERISE
                 </a>
                 <form class="d-flex navbar_search" role="search">
@@ -56,7 +76,7 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
                             </div>
 
                             <div class="main-cart">
-                                <h4 class="cart-description">Giỏ hàng của bạn</h4>
+                                <h4 class="cart-description" style="text-align: center;">GIỎ HÀNG CỦA BẠN</h4>
                                 <br/>
 
                                 <div class="show-cart">
@@ -65,42 +85,42 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
                                             if ($showCart['id'] != null) {
                                             $price[] = $showCart['price'];
                                     ?>  
-                                            <div class="d-flex mb-3 list-item">
+                                            <div class="d-flex mb-3 list-item-hd">
                                                 <div class="thum me-3">
                                                     <img src="<?=$showCart['img']; ?>" alt="" class="" width="50" height="50">
                                                 </div>
 
                                                 <div class="text-box pr-5">
-                                                    <h4 class="" style="font-size:20px"><?=$showCart['name']; ?></h4>
+                                                    <h4 class="" style="font-size:18px;font-weight: 550;"><?=$showCart['name']; ?></h4>
                                                     <span class="d-flex">
-                                                        <p class="price-promo"><?=$showCart['promo']; ?></p>
-                                                        <p class="old-price ms-3 text-decoration-line-through">
-                                                        <?=$showCart['price']; ?></p>
+                                                        <?php if ($showCart['promo'] != '') {?>
+                                                        <p class="price-promo">Giá KM: <?=currency_format($showCart['promo']); ?>.000đ</p>
+                                                        <p class="old-price ms-3 text-decoration-line-through"> Giá cũ:
+                                                        <?=currency_format($showCart['price']);?>.000đ</p>
+                                                        <?php } ?>
                                                     </span>
 
                                                     <div class="d-flex">
-                                                        <p class="amount me-3">x1</p>
+                                                        <p class="amount me-3">Số lượng: 1</p>
+                                                        <?php if ($showCart['promo'] != '') {?>
                                                         <p class="">
-                                                            total :
-                                                            <b class=""><?=$showCart['price']; ?> VND</b>
+                                                            Giá/sp: 
+                                                            <b class=""> <?=currency_format($showCart['promo']); ?>.000đ</b>
                                                         </p>
+                                                        <?php } else { ?>
+                                                        <p class="">
+                                                            Giá/sp: 
+                                                            <b class=""> <?=currency_format($showCart['price']); ?>.000đ</b>
+                                                        </p>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
 
-                                                <div class="quantity flex-grow-1 flex justify-content-end align-items-end">
-                                                    <button class="btn-minus" data-index="${index}">-</button>
-                                                    <input 
-                                                        data-index="${index}"
-                                                        type="number"
-                                                        class="text-center input-amount"
-                                                        maxlength="1"
-                                                        minlength="1"
-                                                        min="1"
-                                                        max="99"
-                                                        value=""
-                                                    />
-                                                    <button class="btn-plus" data-index="${index}">+</button>
-                                                </div>
+                                                <!-- <div class="input-group">
+                                                    <span class="input-group-text btn btn-outline-secondary btn_minus" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"> -     </span>
+                                                    <input type="number" style="border-top: 1px #6c757d solid; border-bottom: 1px #6c757d solid;" name="quantity[<?=$showCart['id']?>]" value="<?= isset($showCart['quantity']) ? $showCart['quantity'] : 1 ?>" class="form-control text-center input-quantity" min="1" max="100">
+                                                    <span class="input-group-text btn btn-outline-secondary btn_plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"> +    </span>
+                                                </div> -->
 
                                                 <div>
                                                     <a href="index.php?page=products&action=delete&id=<?php echo $showCart['id'] ?>" class="">
@@ -114,11 +134,11 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
                                 <div class="payment border-top">
                                     <p class="d-flex">
                                         <b class="payment-text">Total price: </b>
-                                        <b class="total-price payment-items"><?=array_sum($price)?></b>
+                                        <b class="total-price payment-items"><?=currency_format(array_sum($price))?>.000đ</b>
                                     </p>
                                     <p class="d-flex">
                                         <b class="payment-text">Tax: </b> 
-                                        <b class="tax payment-items"><?=array_sum($price)*0.08?></b>
+                                        <b class="tax payment-items"><?=currency_format(array_sum($price)*0.08)?>.000đ</b>
                                     </p>
                                     <p class="d-flex">
                                         <b class="payment-text">Ship fee: </b>
@@ -127,12 +147,15 @@ if (isset($_GET['action']) && $_GET['action']=="delete"){
                                     <h3 class="d-flex"> 
                                         <b class="payment-text fs-4">Total Payment: </b>
                                         <?php if (isset($price)) { ?> 
-                                        <b class="total-payment payment-items fs-4"><?=array_sum($price)+array_sum($price)*0.08?></b>
+                                        <b class="total-payment payment-items fs-4"><?=currency_format(array_sum($price)+array_sum($price)*0.08)?>.000đ</b>
                                         <?php } ?>
                                     </h3>
-                                    <div class="btn-payment text-center">
-                                        <a href="cart.php"><button type="button" class="btn btn-secondary btn-lg fs-5 btn-payment-1">Tiến hành thanh toán</button></a>
-                                    </div>
+                                    <!-- <div class="btn-payment text-center">
+                                        <a href="cart.php"><button type="submit" name="submit1" class="btn btn-secondary btn-lg fs-5 btn-payment-1">Tiến hành thanh toán</button></a>
+                                    </div> -->
+                                    <form method="post" action="cart.php">
+                                        <button type="submit" name="submit1" class="btn btn-secondary btn-lg fs-5 btn-payment-1">Tiến hành thanh toán</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
