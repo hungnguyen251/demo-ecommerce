@@ -148,6 +148,7 @@ if (isset($_POST['change-info'])) {
                                         <div class="btn-navigation">
                                             <input type="submit" value="Thay đổi" name="change-info" class="change-info">
                                         </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
