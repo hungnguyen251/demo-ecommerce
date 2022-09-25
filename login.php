@@ -56,9 +56,7 @@ if (isset($_POST['login'])) {
         <?php include 'header.php' ?>
         <div class="container">
             <div class="row">
-                <div class="col-6 col-sm-12 login_layout">
-                    <div class="noi-dung">
-                        <div class="form">
+                <div class="col-sm-12 login_layout noi-dung form">
                             <h2>Bạn đã đăng ký tài khoản</h2>
                             <form action="login.php" method="post" enctype="">
                             <?php if ($err) {
@@ -90,8 +88,6 @@ if (isset($_POST['login'])) {
                                 <li><i class="fa-brands fa-google"></i></li>
                                 <li><i class="fa-brands fa-twitter"></i></li>
                             </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

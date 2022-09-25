@@ -70,55 +70,51 @@ if (isset($_POST['register'])) {
         <?php include 'header.php' ?>
         <div class="container">
             <div class="row">
-                <div class="col-6 col-sm-12 login_layout">
-                    <div class="noi-dung">
-                        <div class="form">
-                            <h2>Đăng ký tài khoản</h2>
-                            <form action="" method="post" enctype="">
-                            <?php if ($err) { ?>
-                                <div style="color:red"><?php echo $err; ?></div>
-                            <?php } ?> 
-                                <div class="input-form">
-                                    <span>Email Người Dùng</span>
-                                    <input type="text" name="email" placeholder="Vui lòng nhập email đăng ký">
-                                </div>
-                                <?php if ($errEmail) { ?>
-                                    <div style="color:red"><?php echo $errEmail; ?></div>
-                                <?php } ?> 
-                                <div class="input-form">
-                                    <span>Mật Khẩu</span>
-                                    <input type="password" name="password" placeholder="Vui lòng nhập mật khẩu">
-                                </div>
-                                <div class="input-form">
-                                    <span>Số điện thoại</span>
-                                    <input type="text" name="phone" placeholder="Vui lòng nhập SĐT đăng ký">
-                                </div>
-                                <?php if ($errPhone) { ?>
-                                    <div style="color:red"><?php echo $errPhone; ?></div>
-                                <?php } ?> 
-                                <div class="input-form">
-                                    <span>Ngày sinh</span>
-                                    <input type="date" name="date-of-bird" placeholder="Vui lòng nhập mật khẩu">
-                                </div>
-                                <div class="input-form">
-                                    <span>Giới tính</span>
-                                    <select name="gendre" class="gendre">
-                                        <option value="men">Nam</option>
-                                        <option value="women">Nữ</option>
-                                    </select>                       
-                                </div>
-                                <div class="input-form">
-                                    <input type="submit" value="Đăng Ký" name="register">
-                                </div>
-                            </form>
-                            <h3>Đăng Nhập Bằng Mạng Xã Hội</h3>
-                            <ul class="icon-dang-nhap">
-                                <li><i class="fa-brands fa-facebook"></i></li>
-                                <li><i class="fa-brands fa-google"></i></li>
-                                <li><i class="fa-brands fa-twitter"></i></li>
-                            </ul>
+                <div class="col-sm-12 login_layout noi-dung form">
+                    <h2>Đăng ký tài khoản</h2>
+                    <form action="" method="post" enctype="">
+                    <?php if ($err) { ?>
+                        <div style="color:red"><?php echo $err; ?></div>
+                    <?php } ?> 
+                        <div class="input-form">
+                            <span>Email Người Dùng (*)</span>
+                            <input type="text" name="email" placeholder="Vui lòng nhập email đăng ký">
                         </div>
-                    </div>
+                        <?php if ($errEmail) { ?>
+                            <div style="color:red"><?php echo $errEmail; ?></div>
+                        <?php } ?> 
+                        <div class="input-form">
+                            <span>Mật Khẩu (*)</span>
+                            <input type="password" name="password" placeholder="Vui lòng nhập mật khẩu">
+                        </div>
+                        <div class="input-form">
+                            <span>Số điện thoại (*)</span>
+                            <input type="text" name="phone" placeholder="Vui lòng nhập SĐT đăng ký">
+                        </div>
+                        <?php if ($errPhone) { ?>
+                            <div style="color:red"><?php echo $errPhone; ?></div>
+                        <?php } ?> 
+                        <div class="input-form">
+                            <span>Ngày sinh (*)</span>
+                            <input type="date" name="date-of-bird" placeholder="Vui lòng nhập mật khẩu">
+                        </div>
+                        <div class="input-form">
+                            <span>Giới tính </span>
+                            <select name="gendre" class="gendre">
+                                <option value="men">Nam</option>
+                                <option value="women">Nữ</option>
+                            </select>                       
+                        </div>
+                        <div class="input-form">
+                            <input type="submit" value="Đăng Ký" name="register">
+                        </div>
+                    </form>
+                    <h3>Đăng Nhập Bằng Mạng Xã Hội</h3>
+                    <ul class="icon-dang-nhap">
+                        <li><i class="fa-brands fa-facebook"></i></li>
+                        <li><i class="fa-brands fa-google"></i></li>
+                        <li><i class="fa-brands fa-twitter"></i></li>
+                    </ul>
                 </div>
             </div>
         </div>

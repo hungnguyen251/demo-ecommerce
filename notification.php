@@ -24,7 +24,7 @@ if (isset($_SESSION['cart'])) {
         <body>
         <?php include 'header.php' ?>
         <div class="container">
-            <div class="row">
+            <div class="row" style="height:500px;">
                 <div class="col-sm-12 text-layout">
                     <i class="fa-sharp fa-solid fa-circle-check icon-success"></i>
                     <h4 class="text-title" style="text-align: center;font-size: 30px;">Bạn đã đặt hàng thành công</h4>

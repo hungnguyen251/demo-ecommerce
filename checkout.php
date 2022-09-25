@@ -41,7 +41,7 @@ if (isset($_POST['checkout'])) {
     if (isset($_SESSION['account']['id'])) {
         $userId = $_SESSION['account']['id'];
     } else {
-        $userId = null;
+        $userId = 0;
     }
 
     //Kiểm tra người dùng đã nhập liệu đầy đủ chưa
@@ -108,7 +108,7 @@ if (isset($_POST['checkout'])) {
 
                                 <!-- Nhập thông họ tên người nhận -->
                                 <div class="input-form">
-                                    <span>Họ và tên khách hàng</span>
+                                    <span>Họ và tên khách hàng (*)</span>
                                     <br/>
                                     <?php if (isset($_SESSION['account']['full_name'])) { ?>
                                         <input type="text" name="fullname" class="" placeholder="<?=$_SESSION['account']['full_name']?>">
@@ -119,7 +119,7 @@ if (isset($_POST['checkout'])) {
 
                                 <!-- Nhập thông email người nhận -->
                                 <div class="input-form">
-                                    <span>Email</span>
+                                    <span>Email (*)</span>
                                     <br/>
                                     <?php if (isset($_SESSION['account']['email'])) { ?>
                                         <input type="text" name="email" placeholder="<?=$_SESSION['account']['email']?>">
@@ -133,7 +133,7 @@ if (isset($_POST['checkout'])) {
 
                                 <!-- Nhập thông SĐT người nhận -->
                                 <div class="input-form">
-                                    <span>Số điện thoại</span>
+                                    <span>Số điện thoại (*)</span>
                                     <br/>
                                     <?php if (isset($_SESSION['account']['phone'])) { ?>
                                         <input type="text" name="phone" placeholder="<?=$_SESSION['account']['phone']?>">
@@ -147,7 +147,7 @@ if (isset($_POST['checkout'])) {
 
                                 <!-- Nhập địa chỉ giao hàng -->
                                 <div class="input-form">
-                                    <span>Địa chỉ</span>
+                                    <span>Địa chỉ (*)</span>
                                     <br/>
                                     <?php if (isset($_SESSION['account']['address'])) { ?>
                                         <input type="text" name="address" placeholder="<?=$_SESSION['account']['address']?>">

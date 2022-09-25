@@ -48,7 +48,7 @@ if (!isset($_SESSION['payment_price'])){
         <?php include 'header.php' ?>
         <div class="container">
             <div class="row">
-                <div class="col-6 col-sm-12">
+                <div class="col-sm-12">
                     <div class="cart">
                         <div class="cart_list">
                             <div class="cart_title">
