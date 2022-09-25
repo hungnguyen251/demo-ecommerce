@@ -13,8 +13,8 @@
 <body>
     <div class="footer main">
         <div class="container">
-            <div class="d-flex footer_list">
-                <div class="col-6 col-sm-5 footer_column">
+            <div class="row footer_list">
+                <div class="col-6 col-sm-5 footer_column column_first">
                     <div class="footer_column_first">
                         <div class="">
                             <h4 class="footer_column_title" style="color:white;">Thông tin liên hệ</h4>
@@ -37,7 +37,7 @@
                         
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 footer_column">
+                <div class="col-6 col-sm-4 footer_column column_second">
                     <div class="footer_column_second">
                         <h4 class="footer_column_title" style="color:white;">Liên kết</h4>
                         <ul class="footer_column_list">
@@ -48,7 +48,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-6 col-sm-3 footer_column">
+                <div class="col-6 col-sm-3 footer_column column_third">
                     <div class="footer_column_third">
                         <h4 class="footer_column_title" style="color:white;">Thông tin chung</h4>
                         <ul class="footer_column_list">

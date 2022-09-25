@@ -3,7 +3,18 @@
     position: fixed;
     top: 0 !important;
     z-index: 1000;
-    width: 100%;
+    width: 100vw !important;
+    background-color: rgba(0,0,0,0.85);
+
+    .container {
+        padding: 0;
+        margin: 0 auto;
+
+        .container-fluid {
+            margin: 0 auto;
+            padding: 0;
+        }
+    }
 
     .navbar {
         .navbar-brand {
@@ -24,7 +35,7 @@
                 position: relative !important;
 
                 .navbar_search_input {
-                    width: 1150px;
+                    width: 750px;
                     border: none;
                 }
     
@@ -135,18 +146,18 @@
     }
 }
 
-@media (max-width: 1490px) {
-  .bg-img {
-    margin-top: 140px !important;
-  }
-}
+// @media (min-width: 1490px) {
+//   .bg-img {
+//     margin-top: 140px !important;
+//   }
+// }
 
 @media (max-width: 1400px) {
     .header {
         .navbar {      
             .navbar_search {
                 .navbar_search_form {
-                    width: 900px;
+                    width: 500px;
                 }
             }
         }
@@ -158,7 +169,7 @@
         .navbar {      
             .navbar_search {
                 .navbar_search_form {
-                    width: 685px;           
+                    width: 385px;           
                 }
             }
         }
@@ -170,7 +181,10 @@
         .navbar {      
             .navbar_search {
                 .navbar_search_form {
-                    width: 455px;
+                    width: 255px;
+                    .navbar_search_input {
+                        width: inherit;
+                    }
                 }
             }
         }
@@ -181,22 +195,22 @@
     .header {
         .navbar {      
             .navbar_search {
-                .navbar_search_form {
-                    width: 265px;
-                }
+                display: none !important;
             }
         }
     }
 }
 
-// @media (max-width: 576px) {
-//     .header {
-//         .navbar {      
-//             .navbar_search {
-//                 .test {
-//                     width: 220px;
-//                 }
-//             }
-//         }
-//     }
-// }
+@media (max-width: 312px) {
+    .header {
+        .navbar {      
+            .navbar_search {
+                display: none !important;
+            }
+
+            .navbar-brand {
+                margin-right: 0px;
+            }
+        }
+    }
+}

@@ -67,4 +67,15 @@
 }
 .footer .container .footer_list .footer_column .footer_column_first .footer_column_text {
   color: #fff;
+}
+
+@media (max-width: 575px) {
+  .column_second, .column_third {
+    display: none !important;
+  }
+  .column_first {
+    margin-left: 10% !important;
+    padding: 0 !important;
+    width: 100vw !important;
+  }
 }/*# sourceMappingURL=footer.css.map */

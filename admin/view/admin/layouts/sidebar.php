@@ -35,17 +35,14 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
-                    <a href="./../pages/home.php" class="nav-link active">
+                    <a href="./../pages/home.php" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Thống kê
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        <p>Thống kê</p>
                     </a>
                 </li>
 
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Danh sách
@@ -78,6 +75,13 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="nav-item menu-open">
+                    <a href="./../pages/profile.php" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Profile</p>
+                    </a>
                 </li>
             </ul>
         </nav>

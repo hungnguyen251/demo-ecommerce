@@ -54,7 +54,7 @@ if (isset($_GET['action']) && $_GET['action']=="add"){
         <body>
         <div id="container">
             <?php include 'header.php' ?>
-            <div id="container">
+            <div id="container bg">
                 <div class="row">
                     <div class="col-sm-12 bg-img">
                         <img src="assets/img/ecom-bg1.jpg" class="bg-img_slide" alt="">

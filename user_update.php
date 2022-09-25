@@ -47,7 +47,6 @@ if (isset($_POST['change-info'])) {
     
         //Thông báo quá trình lưu
         if ($userUpdate) {
-            echo "Bạn đã cập nhật thành công";
             header("Location:profile.php");
         } else {
             echo "Có lỗi xảy ra trong quá trình cập nhật. <a href='login.php'>Thử lại</a>";
@@ -101,7 +100,7 @@ if (isset($_POST['change-info'])) {
                                                 Tên:
                                             </label>
                                             <div class="col-sm-6 col-xs-7">
-                                            <?php if (isset($_SESSION['account']['full_name'])) { ?>
+                                            <?php if (isset($_POST['agree']) && isset($_SESSION['account']['full_name'])) { ?>
                                                 <input type="text" name="fullname" class="" placeholder="<?=$_SESSION['account']['full_name']?>">
                                             <?php } else { ?> 
                                                 <input type="text" name="fullname" class="" placeholder="Họ và tên...">
@@ -113,10 +112,10 @@ if (isset($_POST['change-info'])) {
                                                 Địa chỉ:
                                             </label>
                                             <div class="col-sm-6 col-xs-7">
-                                            <?php if (isset($_SESSION['account']['address'])) { ?>
+                                            <?php if (isset($_POST['agree']) && isset($_SESSION['account']['address'])) { ?>
                                                 <input type="text" name="address" class="" placeholder="<?=$_SESSION['account']['address']?>">
                                             <?php } else { ?> 
-                                                <input type="text" name="address" class="" placeholder="Địa chỉ...">
+                                                <input type="text" name="address" class="" placeholder="Vui lòng nhập địa chỉ">
                                             <?php } ?>
                                             </div>
                                         </div>

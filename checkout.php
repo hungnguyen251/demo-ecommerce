@@ -59,10 +59,9 @@ if (isset($_POST['checkout'])) {
         //Sau khi validate dữ liệu ghi vào DB
         } else {
             $orderCode = "NMH" . rand(100000000,999999999);
-            @$addOrder = mysqli_query($conn,"
-                INSERT INTO orders (user_id, order_code, full_name,email,phone,address,note,total_price)
-                VALUE ('{$userId}', '{$orderCode}','{$fullname}','{$email}','{$phone}','{$address}','{$note}','{$_SESSION['payment_price']['total_price']}')
-            ");
+
+            $sql = "INSERT INTO `orders` (user_id,order_code,full_name,email,phone,address,total_price,note) VALUES ('$userId','$orderCode','$fullname','$email','$phone','$address','".$_SESSION['payment_price']['total_price']."','$note')";
+            $addOrder = mysqli_query($conn,$sql);
                                 
             if (!isset($_SESSION['order_info'])) {
                 $_SESSION['order_info']=[
@@ -73,7 +72,6 @@ if (isset($_POST['checkout'])) {
 
             //Thông báo quá trình lưu
             if ($addOrder) {
-                echo "Bạn đã đặt hàng thành công";
                 header("Location:notification.php");
             } else {
                 echo "Có lỗi xảy ra trong quá trình đặt hàng. <a href='cart.php'>Thử lại</a>";
@@ -98,7 +96,7 @@ if (isset($_POST['checkout'])) {
         <body>
         <?php include 'header.php' ?>
         <div class="container">
-            <div class="row" class="height:1000px;">
+            <div class="row" style="height:1000px;">
                 <div class="col-sm-6 checkout_layout">
                     <div class="noi-dung">
                         <div class="form">
