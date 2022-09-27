@@ -1,3 +1,60 @@
+<?php
+session_start();
+require_once "./../../../dals/OrderDal.php";
+$order = new OrderDal();
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'delete') {
+        $id = (int)$_GET['id'] ?? 0;
+        if ($id > 0) {
+            //xoa
+            $order->delete($id);
+        }
+    }
+}
+if (isset($_POST['name'])) {
+    if ($_POST['action'] == 'add') {
+        $addedSuccess = $order->add(['name' => $_POST['name']]);
+        if ($addedSuccess) {
+            $_SESSION['notify'] = [
+                'message' => 'Add success',
+                'error_code' => 0
+            ];
+        } else {
+            $_SESSION['notify'] = [
+                'message' => 'Add failed',
+                'error_code' => 1
+            ];
+        }
+    } else if ($_POST['action'] == 'edit') {
+        $editSuccess = $order->update($_POST['id'], ['name' => $_POST['name']]);
+        if ($editSuccess) {
+            $_SESSION['notify'] = [
+                'message' => 'Edit success',
+                'error_code' => 0
+            ];
+        } else {
+            $_SESSION['notify'] = [
+                'message' => 'Edit failed',
+                'error_code' => 1
+            ];
+        }
+    }
+}
+
+$page = $_GET['page'] ?? 1;
+$listOrder = $order->listAll($page);
+$totalPage = ceil($order->getCount()->total / 10);
+
+//Attention
+if (!function_exists('currency_format')) {
+  function currency_format($number) {
+      if (!empty($number)) {
+          return number_format($number, 0, ',', '.');
+      }
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once './../layouts/header.php' ?>
@@ -68,34 +125,45 @@
               </tr>
             </thead>
             <tbody>
+            <?php foreach ($listOrder as $item): ?>
               <tr>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
+                <td><?php echo $item->order_code; ?></td>
+                <td><?php echo $item->full_name; ?></td>
+                <td><?php echo $item->email; ?></td>
+                <td><?php echo $item->phone; ?></td>
+                <td><?php echo $item->address; ?></td>
+                <?php if(strlen($item->total_price) > 0) {?>
+                <td><?php echo currency_format($item->total_price) . '.000đ'; ?></td>
+                <?php } else { ?>
+                <td><?php echo currency_format($item->total_price) . '0'; ?></td>
+                <?php } ?>
+                <td><?php echo $item->status; ?></td>
+                <td><?php echo $item->note; ?></td>
+                <td><?php echo $item->created_at; ?></td>
                 <td>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-warning">Edit</button>
-                    <button type="button" class="btn btn-danger">Xóa</button>
+                    <button class="btn btn-warning" onclick="myFunc(<?php echo $item->id ?>,'<?php echo $item->name; ?>')">Sửa</button>
+                    <a class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="?action=delete&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Xóa</a>
                   </div>
                 </td>
               </tr>
+            <?php endforeach; ?>
             </tbody>
           </table>
         </div>
         <!-- /.card-footer -->
         <div class="card-footer clearfix">
           <ul class="pagination pagination-sm m-0 float-right">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
+            <?php for ($i = 0;
+                        $i < $totalPage;
+                        $i++) {
+                ?>
+                <li class="page-item <?php if ($page == ($i + 1)) {
+                    echo "active";
+                } ?>"><a class="page-link"
+                          href="?page=<?php echo $i + 1; ?>"><?php echo $i + 1; ?></a>
+                </li>
+            <?php } ?>
           </ul>
         </div>
       </div>
@@ -118,3 +186,14 @@
 <?php include_once './../scripts/scripts.php' ?>
 </body>
 </html>
+
+<script>
+  function myFunc(id, name) {
+      const myFormNode = document.querySelector('.my-form');
+      const fieldName = myFormNode.querySelector('input[name="name"]');
+      fieldName.value = name;
+      myFormNode.querySelector('input[name="id"]').value = id;
+      myFormNode.querySelector('input[name="action"]').value = "edit";
+      myFormNode.classList.remove('hidden');
+  }
+</script>

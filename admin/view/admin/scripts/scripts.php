@@ -9,6 +9,8 @@
 <script src="./../../../Public/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="./../../../Public/admin/dist/js/adminlte.js"></script>
+<script src="./../../../Public/admin/dist/js/adminlte.min.js?v=3.2.0"></script>
+<script src="./../../../Public//plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
