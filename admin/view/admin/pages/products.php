@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once "./../../../Lib/check_login.php";
 require_once "./../../../dals/ProductDal.php";
 $product = new ProductDal();
 if (isset($_GET['action'])) {
@@ -61,20 +61,7 @@ if (!function_exists('currency_format')) {
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../pages/home.php" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../pages/contact.php" class="nav-link">Contact</a>
-      </li>
-    </ul>
-  </nav>
+  <?php include_once './../layouts/navbar.php' ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->

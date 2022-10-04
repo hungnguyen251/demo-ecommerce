@@ -48,67 +48,63 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="card">
-            <!-- /.card-header -->
-            <!-- /.card-body -->
-            <div class="col-md-6">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Thêm sản phẩm</h3>
-                </div>
+      <div class="card">
+        <div class="col-md-6">
+          <div class="card card-primary">
+              <div class="card-header">
+                  <h3 class="card-title">Thêm sản phẩm</h3>
+              </div>
 
-                <form>
-                    <div class="card-body">
-                        <div class="form-group">
-                          <label for="inputName">Tên sản phẩm</label>
-                          <input type="text" class="form-control" id="inputName" placeholder="Nhập vào tên sản phẩm">
-                        </div>
-                        <div class="form-group">
-                          <label for="inputBrand">Thương hiệu</label>
-                          <input type="text" class="form-control" id="inputBrand" placeholder="Nhập vào thương hiệu">
-                        </div>
-                        <div class="form-group">
-                          <label>Dành cho giới tính</label>
-                          <select class="form-control">
-                            <option>Nam</option>
-                            <option>Nữ</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="inputPrice">Giá gốc</label>
-                          <input type="text" class="form-control" id="inputPrice" placeholder="Giá gốc">
-                        </div>
-                        <div class="form-group">
-                          <label for="inputPromo">Giá khuyến mãi</label>
-                          <input type="text" class="form-control" id="inputPromo" placeholder="Giá khuyến mãi">
-                        </div>
-                        <div class="form-group">
-                          <label for="inputFile">Tải lên hình ảnh</label>
-                          <div class="input-group">
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="inputFile">
-                              <label class="custom-file-label" for="inputFile">Chọn hình ảnh</label>
-                            </div>
-                            <div class="input-group-append">
-                              <span class="input-group-text">Tải lên</span>
-                            </div>
+              <form>
+                  <div class="card-body">
+                      <div class="form-group">
+                        <label for="inputName">Tên sản phẩm</label>
+                        <input type="text" class="form-control" id="inputName" placeholder="Nhập vào tên sản phẩm">
+                      </div>
+                      <div class="form-group">
+                        <label for="inputBrand">Thương hiệu</label>
+                        <input type="text" class="form-control" id="inputBrand" placeholder="Nhập vào thương hiệu">
+                      </div>
+                      <div class="form-group">
+                        <label>Dành cho giới tính</label>
+                        <select class="form-control">
+                          <option>Nam</option>
+                          <option>Nữ</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputPrice">Giá gốc</label>
+                        <input type="text" class="form-control" id="inputPrice" placeholder="Giá gốc">
+                      </div>
+                      <div class="form-group">
+                        <label for="inputPromo">Giá khuyến mãi</label>
+                        <input type="text" class="form-control" id="inputPromo" placeholder="Giá khuyến mãi">
+                      </div>
+                      <div class="form-group">
+                        <label for="inputFile">Tải lên hình ảnh</label>
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputFile">
+                            <label class="custom-file-label" for="inputFile">Chọn hình ảnh</label>
+                          </div>
+                          <div class="input-group-append">
+                            <span class="input-group-text">Tải lên</span>
                           </div>
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Đồng ý với thay đổi</label>
-                        </div>
-                    </div>
+                      </div>
+                      <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">Đồng ý với thay đổi</label>
+                      </div>
+                  </div>
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Xác nhận</button>
-                    </div>
-                  </form>
-              </div>
-              </div>
-            <!-- /.card-footer -->
-            
-        </div>
+                  <div class="card-footer">
+                      <button type="submit" class="btn btn-primary">Xác nhận</button>
+                  </div>
+                </form>
+            </div>
+          </div>            
+      </div>
       <!-- /.card -->
     </section>
     <!-- /.content -->

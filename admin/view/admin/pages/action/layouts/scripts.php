@@ -3,7 +3,6 @@
 <script src="./../../../../Public/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="./../../../../Public/admin/dist/js/adminlte.js"></script>
 <script src="./../../../../Public/admin/dist/js/adminlte.min.js?v=3.2.0"></script>
-<script src="./../../../../Public//plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="./../../../../Public/admin/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="./../../../../Public/admin/plugins/raphael/raphael.min.js"></script>
 <script src="./../../../../Public/admin/plugins/jquery-mapael/jquery.mapael.min.js"></script>
@@ -13,3 +12,6 @@
 <script src="./../../../../Public/admin/dist/js/pages/dashboard2.js"></script>
 <script src="./../../../../Public/admin/plugins/jsgrid/demos/db.js"></script>
 <script src="./../../../../Public/admin/plugins/jsgrid/jsgrid.min.js"></script>
+<script src="./../../../../Public/admin/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="./../../../../Public/admin/plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="./../../../../Public/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>

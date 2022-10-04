@@ -11,6 +11,16 @@ class UserDal extends DB implements ICrud
         $this->setTableName('user');
     }
 
+    function getUserById($id)
+    {
+        /**
+         * 
+         * @var object $this
+        */
+        $user = $this->db->query("SELECT * FROM $this->tableName WHERE id = $id");
+        return $user->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function add($payload)
     {
         // TODO: Implement add() method.
@@ -18,16 +28,15 @@ class UserDal extends DB implements ICrud
          * 
          * @var object $this
         */
-        $user = $this->db->prepare("INSERT INTO $this->tableName(name) VALUES (:full_name,:email,:phone,:address,:gendre,:birthday,:type,:status,:created_at)");
+        $user = $this->db->prepare("INSERT INTO $this->tableName(email,phone,full_name,address,gendre,birthday,password,status) VALUES (:email,:phone,:full_name,:address,:gendre,:birthday,:password,:status)");
         $user->bindParam(":full_name", $payload['full_name']);
         $user->bindParam(":email", $payload['email']);
         $user->bindParam(":phone", $payload['phone']);
         $user->bindParam(":address", $payload['address']);
         $user->bindParam(":gendre", $payload['gendre']);
         $user->bindParam(":birthday", $payload['birthday']);
-        $user->bindParam(":type", $payload['type']);
+        $user->bindParam(":password", $payload['password']);
         $user->bindParam(":status", $payload['status']);
-        $user->bindParam(":created_at", $payload['created_at']);
         try {
             $user->execute();
         } catch (Exception $exception) {

@@ -11,6 +11,16 @@ class OrderDal extends DB implements ICrud
         $this->setTableName('orders');
     }
 
+    function getOrderById($id)
+    {
+        /**
+         * 
+         * @var object $this
+        */
+        $order = $this->db->query("SELECT * FROM $this->tableName WHERE id = $id");
+        return $order->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function add($payload)
     {
         // TODO: Implement add() method.

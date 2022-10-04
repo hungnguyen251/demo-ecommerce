@@ -11,6 +11,16 @@ class ProductDal extends DB implements ICrud
         $this->setTableName('products');
     }
 
+    function getProductById($id)
+    {
+        /**
+         * 
+         * @var object $this
+        */
+        $product = $this->db->query("SELECT * FROM $this->tableName WHERE id = $id");
+        return $product->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function add($payload)
     {
         // TODO: Implement add() method.

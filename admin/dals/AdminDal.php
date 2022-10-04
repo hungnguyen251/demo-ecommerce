@@ -18,13 +18,14 @@ class AdminDal extends DB implements ICrud
          * 
          * @var object $this
         */
-        $userAdmin = $this->db->prepare("INSERT INTO $this->tableName(name) VALUES (:full_name,:email,:phone,:type,:status,:created_at)");
+        $userAdmin = $this->db->prepare("INSERT INTO $this->tableName(full_name,email,phone,password,gendre,type,status) VALUES (:full_name,:email,:phone,:password,:gendre,:type,:status)");
         $userAdmin->bindParam(":full_name", $payload['full_name']);
         $userAdmin->bindParam(":email", $payload['email']);
         $userAdmin->bindParam(":phone", $payload['phone']);
+        $userAdmin->bindParam(":password", $payload['password']);
+        $userAdmin->bindParam(":gendre", $payload['gendre']);
         $userAdmin->bindParam(":type", $payload['type']);
         $userAdmin->bindParam(":status", $payload['status']);
-        $userAdmin->bindParam(":created_at", $payload['created_at']);
         try {
             $userAdmin->execute();
         } catch (Exception $exception) {
@@ -40,13 +41,15 @@ class AdminDal extends DB implements ICrud
          * 
          * @var object $this
         */
-        $userAdmin = $this->db->prepare("UPDATE $this->tableName SET full_name = :full_name,email=:email,phone=:phone,type=:type,status=:status,created_at=:created_at WHERE id=:id");
+        $userAdmin = $this->db->prepare("UPDATE $this->tableName SET full_name = :full_name,email=:email,phone=:phone,password=:password,gendre=:gendre,type=:type,status=:status WHERE id=:id");
         $userAdmin->bindParam(":full_name", $payload['full_name']);
         $userAdmin->bindParam(":email", $payload['email']);
         $userAdmin->bindParam(":phone", $payload['phone']);
+        $userAdmin->bindParam(":password", $payload['password']);
+        $userAdmin->bindParam(":gendre", $payload['gendre']);
         $userAdmin->bindParam(":type", $payload['type']);
         $userAdmin->bindParam(":status", $payload['status']);
-        $userAdmin->bindParam(":created_at", $payload['created_at']);
+        $userAdmin->bindParam(":id", $id);
         try {
             $userAdmin->execute();
         } catch (Exception $exception) {
@@ -71,6 +74,16 @@ class AdminDal extends DB implements ICrud
         $offset = ($page - 1) * 10;
         $rs = $this->db->query("SELECT * FROM $this->tableName ORDER BY created_at DESC LIMIT $offset,10");
         return $rs->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function getAdminById($id)
+    {
+        /**
+         * 
+         * @var object $this
+        */
+        $admin = $this->db->query("SELECT * FROM $this->tableName WHERE id = $id");
+        return $admin->fetchAll(PDO::FETCH_OBJ);
     }
 
     function delete($id)

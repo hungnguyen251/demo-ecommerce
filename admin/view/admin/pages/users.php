@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once "./../../../Lib/check_login.php";
 require_once "./../../../dals/UserDal.php";
 $user = new UserDal();
 if (isset($_GET['action'])) {
@@ -52,20 +52,7 @@ $totalPage = ceil($user->getCount()->total / 10);
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../pages/home.php" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../pages/contact.php" class="nav-link">Contact</a>
-      </li>
-    </ul>
-  </nav>
+  <?php include_once './../layouts/navbar.php' ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -94,7 +81,7 @@ $totalPage = ceil($user->getCount()->total / 10);
       <div class="card">
         <div class="card-header d-flex" style="height: 65px;">
           <h3 class="card-title">Danh sách khách hàng</h3>
-          <button type="button" class="btn btn-block btn-info" style="position: absolute;width: 150px; right: 40px;">Thêm KH</button>
+          <a class="btn btn-block btn-info" href="./action/users_action.php?action=add" style="position: absolute;width: 150px; right: 40px;">Thêm KH</a>
         </div>
         <!-- /.card-header -->
         <!-- /.card-body -->
@@ -124,7 +111,7 @@ $totalPage = ceil($user->getCount()->total / 10);
                 <td><?php echo $item->created_at; ?></td>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-warning" onclick="myFunc(<?php echo $item->id ?>,'<?php echo $item->name; ?>')">Sửa</button>
+                    <a class="btn btn-warning" href="./action/users_action.php?action=edit&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Sửa</a>
                     <a class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="?action=delete&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Xóa</a>
                   </div>
                 </td>
