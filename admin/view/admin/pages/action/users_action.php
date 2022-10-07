@@ -15,7 +15,7 @@ if ('add' == $action) {
     $gendre  = isset($_POST['gendre']) ? $_POST['gendre'] : '';
     $address = isset($_POST['address']) ? $_POST['address'] : '';
     $birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
-    $status = isset($_POST['status']) ? $_POST['status'] : 'Active';
+    $status = isset($_POST['status']) ? 'Active' : 'Inactive';
     $password = md5($password);
 
     //Kiểm tra người dùng đã nhập liệu đầy đủ chưa
@@ -73,36 +73,33 @@ if ('add' == $action) {
     $email = isset($_POST['email']) ? $_POST['email'] : $editUser[0]->email;
     $password = isset($_POST['password']) ? $_POST['password'] : $editUser[0]->password;
     $phone = isset($_POST['phone']) ? $_POST['phone'] : $editUser[0]->phone;
+    $address = isset($_POST['address']) ? $_POST['address'] : $editUser[0]->address;
     $gendre  = isset($_POST['gendre']) ? $_POST['gendre'] : $editUser[0]->gendre;
-    $type = isset($_POST['type']) && $_POST['type'] == 'Quản lý' ? 'Super_Admin' : $editUser[0]->type;
-    $status = isset($_POST['status']) ? $_POST['status'] : 'Active';
+    $birthday  = isset($_POST['birthday']) ? $_POST['birthday'] : $editUser[0]->birthday;
+    $status = isset($_POST['status']) ? 'Active' : 'Inactive';
     $password = md5($password);
 
-    //Kiểm tra email này đã có người dùng chưa
-    // foreach ($listUserAdmin as $account) {
-    //   $admin = json_decode(json_encode($account),true);
-    //   $checkEmail[] = $admin['email'];
-    //   $checkPhone[] = $admin['phone'];
-    // }
-
+    //Xử lý form nhập vào ngày tháng
+    $birthday = date('Y-m-d',strtotime($birthday));
     if (!mb_eregi("^[0-9]", $phone)) {
         //Kiểm tra SĐT có đúng định dạng hay không
         $errPhone = 'SĐT không hợp lệ. Vui lòng nhập SĐT khác';
     } else if (!mb_eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", $email)) {
         $errEmail = 'Email này không hợp lệ. Vui lòng nhập email khác';
     } else {
-      $editUser = $user->update($id,
+      $updateUser = $user->update($id,
       [
         'full_name' => $fullname,
         'email' => $email,
         'phone' => $phone,
-        'password' => $password,
+        'address' => $address,
         'gendre' => $gendre,
-        'type' => $type,
-        'status' => $status
+        'birthday' => $birthday,
+        'password' => $password,
+        'status' => $status,
+        'updated_at' => @date('Y-m-d H:i:s')
       ]);
-
-      if ($editUser) {
+      if ($updateUser) {
           $_SESSION['notify'] = [
               'message' => 'Sửa thông tin thành công',
               'error_code' => 0
@@ -156,11 +153,11 @@ if (isset($_POST['back'])) {
           <div class="col-sm-6">
             <h1>Khách hàng</h1>
           </div>
-            <div class="col-sm-6" style="text-align:right;">
-              <form action="" method="post">
-                <button type="submit" name="back" class="btn btn-info">Quay lại trang người dùng</button>
-              </form>
-            </div>
+          <div class="col-sm-6" style="text-align:right;">
+            <form action="" method="post">
+              <button type="submit" name="back" class="btn btn-info">Quay lại trang người dùng</button>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -193,7 +190,9 @@ if (isset($_POST['back'])) {
                     <div class="card-header">
                         <h3 class="card-title">Thêm người dùng</h3>
                     </div>
-
+                    <?php if (isset($err)) { ?>
+                        <div style="color:red"><?php echo $err; ?></div>
+                    <?php } ?> 
                     <form method="post">
                         <div class="card-body">
                           <div class="form-group">
@@ -238,14 +237,14 @@ if (isset($_POST['back'])) {
                                   <div class="input-group-prepend">
                                       <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                   </div>
-                                  <input type="text" name="birthday" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
+                                  <input type="text" name="birthday" value="<?php if(isset($editUser)){echo date('d-m-Y',strtotime($editUser[0]->birthday));}?>" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
                               </div>
                           </div>
                           <div class="form-group d-flex flex-column">
                               <label>Trạng thái</label>
                               <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-focused bootstrap-switch-animate bootstrap-switch-on" style="width: 86px;">
                                   <div class="bootstrap-switch-container" style="width: 126px; margin-left: 0px;">
-                                    <input type="checkbox" name="my-checkbox" checked="" data-bootstrap-switch="">
+                                    <input type="checkbox" name="status" <?=(isset($editUser) && $editUser[0]->status == 'Inactive') ? '' : 'checked' ?> data-bootstrap-switch="">
                                   </div>
                               </div>
                           </div>

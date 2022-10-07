@@ -91,7 +91,7 @@ if (!function_exists('currency_format')) {
       <div class="card">
         <div class="card-header d-flex" style="height: 65px;">
           <h3 class="card-title">Danh sách sản phẩm</h3>
-          <button type="button" class="btn btn-block btn-info" style="position: absolute;width: 150px; right: 40px;"><a href="./action/products_action.php" style="color: #fff;">Thêm sản phẩm</a></button>
+          <a href="./action/products_action.php?action=add" class="btn btn-block btn-info" style="position: absolute;width: 150px; right: 40px;">Thêm sản phẩm</a>
         </div>
         <!-- /.card-header -->
         <!-- /.card-body -->
@@ -113,11 +113,11 @@ if (!function_exists('currency_format')) {
                 <td><?php echo $item->name; ?></td>
                 <td><?php echo $item->brand ?></td>
                 <td><?php echo $item->gendre ?></td>
-                <td><?php echo currency_format($item->price) ?>.000đ</td>
-                <td><?php echo currency_format($item->promo) ?>.000đ</td>
+                <td><?php echo currency_format($item->price) . '.000đ' ?></td>
+                <td><?php if($item->promo !=''){echo currency_format($item->promo) . '.000đ';}else{echo '0';}?></td>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-warning" onclick="myFunc(<?php echo $item->id ?>,'<?php echo $item->name; ?>')">Sửa</button>
+                  <a class="btn btn-warning" href="./action/products_action.php?action=edit&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Sửa</a>
                     <a class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="?action=delete&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Xóa</a>
                   </div>
                 </td>
@@ -129,18 +129,12 @@ if (!function_exists('currency_format')) {
         <!-- /.card-footer -->
         <div class="card-footer clearfix">
           <ul class="pagination pagination-sm m-0 float-right">
-            <?php for ($i = 0;
-                        $i < $totalPage;
-                        $i++) {
-                ?>
-                <li class="page-item <?php if ($page == ($i + 1)) {
-                    echo "active";
-                } ?>"><a class="page-link"
-                          href="?page=<?php echo $i + 1; ?>"><?php echo $i + 1; ?></a>
-                </li>
-
-                <?php
-            } ?>
+            <?php for ($i = 0;$i < $totalPage;$i++) {?>
+              <li class="page-item <?php if ($page == ($i + 1)) {
+                  echo "active";
+              } ?>"><a class="page-link" href="?page=<?php echo $i + 1; ?>"><?php echo $i + 1; ?></a>
+              </li>
+              <?php } ?>
           </ul>
         </div>
       </div>

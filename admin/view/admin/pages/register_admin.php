@@ -108,7 +108,7 @@ $totalPage = ceil($userAdmin->getCount()->total / 10);
                 <td><?php echo $item->created_at; ?></td>
                 <td><?php echo $item->type; ?></td>
                 <td><?php echo $item->status; ?></td>
-                <td><?php echo $item->created_at; ?></td>
+                <td><?php echo date('d/m/Y',strtotime($item->created_at)); ?></td>
                 <td>
                   <div class="btn-group">
                     <a class="btn btn-warning" href="./action/admin_action.php?action=edit&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Sửa</a>

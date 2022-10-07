@@ -14,7 +14,7 @@ if ('add' == $action) {
     $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
     $gendre  = isset($_POST['gendre']) ? $_POST['gendre'] : '';
     $type = isset($_POST['type']) && $_POST['type'] == 'Quản lý' ? 'Super_Admin' : 'Admin';
-    $status = isset($_POST['status']) ? $_POST['status'] : 'Active';
+    $status = isset($_POST['status']) ? 'Active' : 'Inactive';
     $password = md5($password);
 
     //Kiểm tra người dùng đã nhập liệu đầy đủ chưa
@@ -73,7 +73,7 @@ if ('add' == $action) {
     $phone = isset($_POST['phone']) ? $_POST['phone'] : $editUserAdmin[0]->phone;
     $gendre  = isset($_POST['gendre']) ? $_POST['gendre'] : $editUserAdmin[0]->gendre;
     $type = isset($_POST['type']) && $_POST['type'] == 'Quản lý' ? 'Super_Admin' : $editUserAdmin[0]->type;
-    $status = isset($_POST['status']) ? $_POST['status'] : 'Active';
+    $status = isset($_POST['status']) ? 'Active' : 'Inactive';
     $password = md5($password);
 
     //Kiểm tra email này đã có người dùng chưa
@@ -193,7 +193,9 @@ if (isset($_POST['back'])) {
                     <div class="card-header">
                         <h3 class="card-title">Thêm QTV</h3>
                     </div>
-
+                    <?php if (isset($err)) { ?>
+                        <div style="color:red"><?php echo $err; ?></div>
+                    <?php } ?> 
                     <form href="#" method="post">
                         <div class="card-body">
                             <div class="form-group">
@@ -235,9 +237,9 @@ if (isset($_POST['back'])) {
                             <div class="form-group d-flex flex-column">
                                 <label>Trạng thái</label>
                                 <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-focused bootstrap-switch-animate bootstrap-switch-off" style="width: 86px;">
-                                    <div class="bootstrap-switch-container" style="width: 126px; margin-left: 0px;">
-                                      <input type="checkbox" name="my-checkbox" checked="" data-bootstrap-switch="">
-                                    </div>
+                                  <div class="bootstrap-switch-container" style="width: 126px; margin-left: 0px;">
+                                    <input type="checkbox" name="status" id="status" <?=(isset($editUserAdmin) && $editUserAdmin[0]->status == 'Inactive') ? '' : 'checked' ?> data-bootstrap-switch="">
+                                  </div>
                                 </div>
                             </div>
                             <div class="form-check">
@@ -265,7 +267,24 @@ if (isset($_POST['back'])) {
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<!-- Modal -->
+<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to change this?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- jQuery -->
 <?php include_once './layouts/scripts.php' ?>
 </body>

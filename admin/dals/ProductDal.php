@@ -28,7 +28,7 @@ class ProductDal extends DB implements ICrud
          * 
          * @var object $this
         */
-        $product = $this->db->prepare("INSERT INTO $this->tableName(name) VALUES (:name,:brand,:gendre,:price,:promo,:description,:url)");
+        $product = $this->db->prepare("INSERT INTO $this->tableName(name,brand,gendre,price,promo,description,url,status) VALUES (:name,:brand,:gendre,:price,:promo,:description,:url,:status)");
         $product->bindParam(":name", $payload['name']);
         $product->bindParam(":brand", $payload['brand']);
         $product->bindParam(":gendre", $payload['gendre']);
@@ -36,6 +36,7 @@ class ProductDal extends DB implements ICrud
         $product->bindParam(":promo", $payload['promo']);
         $product->bindParam(":description", $payload['description']);
         $product->bindParam(":url", $payload['url']);
+        $product->bindParam(":status", $payload['status']);
         try {
             $product->execute();
         } catch (Exception $exception) {
@@ -51,7 +52,7 @@ class ProductDal extends DB implements ICrud
          * 
          * @var object $this
         */
-        $product = $this->db->prepare("UPDATE $this->tableName SET name = :name,brand=:brand,gendre=:gendre,price=:price,promo=:promo,description=:description,url=:url WHERE id=:id");
+        $product = $this->db->prepare("UPDATE $this->tableName SET name=:name,brand=:brand,gendre=:gendre,price=:price,promo=:promo,description=:description,url=:url,status=:status,updated_at=:updated_at WHERE id=:id");
         $product->bindParam(":name", $payload['name']);
         $product->bindParam(":brand", $payload['brand']);
         $product->bindParam(":gendre", $payload['gendre']);
@@ -59,6 +60,9 @@ class ProductDal extends DB implements ICrud
         $product->bindParam(":promo", $payload['promo']);
         $product->bindParam(":description", $payload['description']);
         $product->bindParam(":url", $payload['url']);
+        $product->bindParam(":status", $payload['status']);
+        $product->bindParam(":updated_at", $payload['updated_at']);
+        $product->bindParam(":id", $id);
         try {
             $product->execute();
         } catch (Exception $exception) {

@@ -107,8 +107,8 @@ $totalPage = ceil($user->getCount()->total / 10);
                 <td><?php echo $item->phone; ?></td>
                 <td><?php echo $item->address; ?></td>
                 <td><?php echo $item->gendre; ?></td>
-                <td><?php echo $item->birthday; ?></td>
-                <td><?php echo $item->created_at; ?></td>
+                <td><?php echo date('d/m/Y',strtotime($item->birthday)); ?></td>
+                <td><?php echo date('d/m/Y',strtotime($item->created_at)); ?></td>
                 <td>
                   <div class="btn-group">
                     <a class="btn btn-warning" href="./action/users_action.php?action=edit&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Sửa</a>

@@ -15,3 +15,4 @@
 <script src="./../../../../Public/admin/plugins/daterangepicker/daterangepicker.js"></script>
 <script src="./../../../../Public/admin/plugins/inputmask/jquery.inputmask.min.js"></script>
 <script src="./../../../../Public/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="./../../../../Public/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>

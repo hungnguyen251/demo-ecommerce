@@ -52,16 +52,17 @@ class UserDal extends DB implements ICrud
          * 
          * @var object $this
         */
-        $user = $this->db->prepare("UPDATE $this->tableName SET full_name = :full_name,email=:email,phone=:phone,address=:address,gendre=:gendre,birthday=:birthday,type=:type,status=:status,created_at=:created_at WHERE id=:id");
+        $user = $this->db->prepare("UPDATE $this->tableName SET full_name = :full_name,email=:email,phone=:phone,address=:address,gendre=:gendre,birthday=:birthday,password=:password,status=:status,updated_at=:updated_at WHERE id=:id");
         $user->bindParam(":full_name", $payload['full_name']);
         $user->bindParam(":email", $payload['email']);
         $user->bindParam(":phone", $payload['phone']);
         $user->bindParam(":address", $payload['address']);
         $user->bindParam(":gendre", $payload['gendre']);
         $user->bindParam(":birthday", $payload['birthday']);
-        $user->bindParam(":type", $payload['type']);
+        $user->bindParam(":password", $payload['password']);
         $user->bindParam(":status", $payload['status']);
-        $user->bindParam(":created_at", $payload['created_at']);
+        $user->bindParam(":updated_at", $payload['updated_at']);
+        $user->bindParam(":id", $id);
         try {
             $user->execute();
         } catch (Exception $exception) {
