@@ -158,14 +158,3 @@ if (!function_exists('currency_format')) {
 
 </body>
 </html>
-
-<script>
-  function myFunc(id, name) {
-      const myFormNode = document.querySelector('.my-form');
-      const fieldName = myFormNode.querySelector('input[name="name"]');
-      fieldName.value = name;
-      myFormNode.querySelector('input[name="id"]').value = id;
-      myFormNode.querySelector('input[name="action"]').value = "edit";
-      myFormNode.classList.remove('hidden');
-  }
-</script>

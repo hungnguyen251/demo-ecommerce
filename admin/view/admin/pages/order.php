@@ -83,7 +83,7 @@ if (!function_exists('currency_format')) {
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
     <!-- Main content -->
@@ -91,7 +91,7 @@ if (!function_exists('currency_format')) {
       <div class="card">
         <div class="card-header d-flex" style="height: 65px;">
           <h3 class="card-title">Danh sách đơn hàng</h3>
-          <button type="button" class="btn btn-block btn-info" style="position: absolute;width: 150px; right: 40px;"><a href="./action/order_action.php" style="color: #fff;">Tạo đơn hàng</a></button>
+          <a class="btn btn-block btn-info" href="./action/order_action.php?action=add" style="position: absolute;width: 150px; right: 40px;">Tạo đơn hàng</a>
         </div>
         <!-- /.card-header -->
         <!-- /.card-body -->
@@ -129,7 +129,7 @@ if (!function_exists('currency_format')) {
                 <td><?php echo $item->created_at; ?></td>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-warning" onclick="myFunc(<?php echo $item->id ?>,'<?php echo $item->name; ?>')">Sửa</button>
+                    <a class="btn btn-warning" href="./action/order_action.php?action=edit&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Sửa</a>
                     <a class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="?action=delete&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Xóa</a>
                   </div>
                 </td>
@@ -141,15 +141,10 @@ if (!function_exists('currency_format')) {
         <!-- /.card-footer -->
         <div class="card-footer clearfix">
           <ul class="pagination pagination-sm m-0 float-right">
-            <?php for ($i = 0;
-                        $i < $totalPage;
-                        $i++) {
-                ?>
-                <li class="page-item <?php if ($page == ($i + 1)) {
-                    echo "active";
-                } ?>"><a class="page-link"
-                          href="?page=<?php echo $i + 1; ?>"><?php echo $i + 1; ?></a>
-                </li>
+            <?php for ($i = 0; $i < $totalPage; $i++) { ?>
+              <li class="page-item <?php if ($page == ($i + 1)) { echo "active"; } ?>">
+                  <a class="page-link" href="?page=<?php echo $i + 1; ?>"><?php echo $i + 1; ?></a>
+              </li>
             <?php } ?>
           </ul>
         </div>
@@ -173,14 +168,3 @@ if (!function_exists('currency_format')) {
 <?php include_once './../scripts/scripts.php' ?>
 </body>
 </html>
-
-<script>
-  function myFunc(id, name) {
-      const myFormNode = document.querySelector('.my-form');
-      const fieldName = myFormNode.querySelector('input[name="name"]');
-      fieldName.value = name;
-      myFormNode.querySelector('input[name="id"]').value = id;
-      myFormNode.querySelector('input[name="action"]').value = "edit";
-      myFormNode.classList.remove('hidden');
-  }
-</script>

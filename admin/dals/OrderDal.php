@@ -28,7 +28,7 @@ class OrderDal extends DB implements ICrud
          * 
          * @var object $this
         */
-        $order = $this->db->prepare("INSERT INTO $this->tableName(name) VALUES (:order_code,:full_name,:phone,:email,:address,:total_price,:note,:status,:created_at)");
+        $order = $this->db->prepare("INSERT INTO $this->tableName(order_code,full_name,phone,email,address,total_price,note,status) VALUES (:order_code,:full_name,:phone,:email,:address,:total_price,:note,:status)");
         $order->bindParam(":order_code", $payload['order_code']);
         $order->bindParam(":full_name", $payload['full_name']);
         $order->bindParam(":email", $payload['email']);
@@ -37,7 +37,6 @@ class OrderDal extends DB implements ICrud
         $order->bindParam(":total_price", $payload['total_price']);
         $order->bindParam(":note", $payload['note']);
         $order->bindParam(":status", $payload['status']);
-        $order->bindParam(":created_at", $payload['created_at']);
         try {
             $order->execute();
         } catch (Exception $exception) {
@@ -53,7 +52,7 @@ class OrderDal extends DB implements ICrud
          * 
          * @var object $this
         */
-        $order = $this->db->prepare("UPDATE $this->tableName SET order_code = :order_code,full_name = :full_name,email=:email,phone=:phone,address=:address,total_price=:total_price,note=:note,status=:status,created_at=:created_at WHERE id=:id");
+        $order = $this->db->prepare("UPDATE $this->tableName SET order_code = :order_code,full_name = :full_name,email=:email,phone=:phone,address=:address,total_price=:total_price,note=:note,status=:status,updated_at=:updated_at WHERE id=:id");
         $order->bindParam(":order_code", $payload['order_code']);
         $order->bindParam(":full_name", $payload['full_name']);
         $order->bindParam(":email", $payload['email']);
@@ -62,7 +61,8 @@ class OrderDal extends DB implements ICrud
         $order->bindParam(":total_price", $payload['total_price']);
         $order->bindParam(":note", $payload['note']);
         $order->bindParam(":status", $payload['status']);
-        $order->bindParam(":created_at", $payload['created_at']);
+        $order->bindParam(":updated_at", $payload['updated_at']);
+        $order->bindParam(":id", $id);
         try {
             $order->execute();
         } catch (Exception $exception) {

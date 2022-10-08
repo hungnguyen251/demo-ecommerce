@@ -4,7 +4,6 @@ if (!isset($_SESSION)) {
 } 
 
 if (!isset($_SESSION['account'])) {
-  header('Location:login.php');
+  header('Location:/demo-ecommerce/admin/view/admin/pages/login.php');
 }
-
 ?>
