@@ -14,5 +14,5 @@
   <!-- jsGrid -->
   <link rel="stylesheet" href="./../../../Public/admin/plugins/jsgrid/jsgrid.min.css">
   <link rel="stylesheet" href="./../../../Public/admin/plugins/jsgrid/jsgrid-theme.min.css">
-
+  <link rel="stylesheet" href="./../../../Public/admin/dist/css/adminlte.min.css?v=3.2.0">
 </head>

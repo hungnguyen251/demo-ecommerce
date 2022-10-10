@@ -1,23 +1,58 @@
+<?php
+include_once "./../../../Lib/check_login.php";
+require_once "./../../../dals/AdminDal.php";
+$userAdmin = new AdminDal();
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'delete') {
+        $id = (int)$_GET['id'] ?? 0;
+        if ($id > 0) {
+            //xoa
+            $userAdmin->delete($id);
+        }
+    }
+}
+if (isset($_POST['name'])) {
+    if ($_POST['action'] == 'add') {
+        $addedSuccess = $userAdmin->add(['name' => $_POST['name']]);
+        if ($addedSuccess) {
+            $_SESSION['notify'] = [
+                'message' => 'Add success',
+                'error_code' => 0
+            ];
+        } else {
+            $_SESSION['notify'] = [
+                'message' => 'Add failed',
+                'error_code' => 1
+            ];
+        }
+    } else if ($_POST['action'] == 'edit') {
+        $editSuccess = $userAdmin->update($_POST['id'], ['name' => $_POST['name']]);
+        if ($editSuccess) {
+            $_SESSION['notify'] = [
+                'message' => 'Edit success',
+                'error_code' => 0
+            ];
+        } else {
+            $_SESSION['notify'] = [
+                'message' => 'Edit failed',
+                'error_code' => 1
+            ];
+        }
+    }
+}
+
+$page = $_GET['page'] ?? 1;
+$listUserAdmin = $userAdmin->listAll($page);
+$totalPage = ceil($userAdmin->getCount()->total / 10);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once './../layouts/header.php' ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../pages/home.php" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../pages/contact.php" class="nav-link">Contact</a>
-      </li>
-    </ul>
-  </nav>
+  <?php include_once './../layouts/navbar.php' ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -46,7 +81,7 @@
       <div class="card">
         <div class="card-header d-flex" style="height: 65px;">
           <h3 class="card-title">Danh sách quản trị viên</h3>
-          <button type="button" class="btn btn-block btn-info" style="position: absolute;width: 150px; right: 40px;">Thêm QTV</button>
+          <a href="./action/admin_action.php?action=add"  class="btn btn-block btn-info" style="position: absolute;width: 150px; right: 40px;">Thêm QTV</a>
         </div>
         <!-- /.card-header -->
         <!-- /.card-body -->
@@ -59,34 +94,45 @@
                 <th>Số điện thoại</th>
                 <th>Ngày đăng kí</th>
                 <th>Chức vụ</th>
+                <th>Trạng thái</th>
+                <th>Ngày đăng kí</th>
                 <th>Thao tác</th>
               </tr>
             </thead>
             <tbody>
+            <?php foreach ($listUserAdmin as $item): ?>
               <tr>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
-                <td>Update software</td>
+                <td><?php echo $item->full_name; ?></td>
+                <td><?php echo $item->email; ?></td>
+                <td><?php echo $item->phone; ?></td>
+                <td><?php echo $item->created_at; ?></td>
+                <td><?php echo $item->type; ?></td>
+                <td><?php echo $item->status; ?></td>
+                <td><?php echo date('d/m/Y',strtotime($item->created_at)); ?></td>
                 <td>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-warning">Edit</button>
-                    <button type="button" class="btn btn-danger">Xóa</button>
+                    <a class="btn btn-warning" href="./action/admin_action.php?action=edit&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Sửa</a>
+                    <a class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" href="?action=delete&id=<?php echo $item->id; ?>&page=<?php echo $page; ?>">Xóa</a>
                   </div>
                 </td>
               </tr>
+            <?php endforeach; ?>
             </tbody>
           </table>
         </div>
         <!-- /.card-footer -->
         <div class="card-footer clearfix">
           <ul class="pagination pagination-sm m-0 float-right">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
+            <?php for ($i = 0;
+                        $i < $totalPage;
+                        $i++) {
+                ?>
+                <li class="page-item <?php if ($page == ($i + 1)) {
+                    echo "active";
+                } ?>"><a class="page-link"
+                          href="?page=<?php echo $i + 1; ?>"><?php echo $i + 1; ?></a>
+                </li>
+            <?php } ?>
           </ul>
         </div>
       </div>

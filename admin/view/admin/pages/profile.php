@@ -1,3 +1,7 @@
+<?php
+include_once "./../../../Lib/check_login.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once './../layouts/header.php' ?>
@@ -42,7 +46,7 @@
                 <div class="card-body box-profile">
                     <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle"
-                            src="./../../../Public/admin/dist/img/user2-160x160.jpg"
+                            src="./../../../Public/admin/dist/img/avatar-me.png"
                             alt="User profile picture">
                     </div>
 
